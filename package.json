@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "prepare": "husky",
+    "lint:fix": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet --fix",
+    "lint:check": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --config .prettierrc --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "clean": "bash ./scripts/clean.sh",
+    "lint-staged": "lint-staged",
+    "type-check": "tsc --noEmit --pretty"
   },
   "dependencies": {
     "next": "16.0.8",
@@ -20,8 +27,24 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.0.8",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@eslint/eslintrc": "^3",
+    "@eslint/js": "^9.25.0",
+    "@types/lodash": "^4.17.20",
+    "@types/react-toastify": "^4.1.0",
+    "eslint-config-next": "16.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.0.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.30.1"
   }
 }
