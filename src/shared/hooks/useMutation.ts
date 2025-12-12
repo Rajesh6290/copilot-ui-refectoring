@@ -34,7 +34,9 @@ const getApiUrl = (path: string) => {
 const useMutation = () => {
   const [isLoading, setIsLoading] = useState(false);
   // Use a ref for ipAddress to avoid re-creating the callback when it changes
-  const ipAddressRef = useRef<IPInfo | null>(getLocalStorageItem("IPINFO") as IPInfo | null);
+  const ipAddressRef = useRef<IPInfo | null>(
+    getLocalStorageItem("IPINFO") as IPInfo | null
+  );
 
   // Update the ref if ipAddress changes
   useEffect(() => {
@@ -68,8 +70,12 @@ const useMutation = () => {
           ? {}
           : { "Content-Type": "application/json" };
 
-        if (token) {headers["Authorization"] = `Bearer ${token}`};
-        if (options?.type) {headers["Type"] = options.type}
+        if (token) {
+          headers["Authorization"] = `Bearer ${token}`;
+        }
+        if (options?.type) {
+          headers["Type"] = options.type;
+        }
         // Always use the current ref value
         headers["ipv4"] = ipAddressRef.current?.ip || "0.0.0.0";
 
@@ -82,11 +88,11 @@ const useMutation = () => {
           onUploadProgress: (progressEvent: AxiosProgressEvent) => {
             if (options?.onProgress && progressEvent.total) {
               const progress = Math.round(
-                (progressEvent.loaded / progressEvent.total) * 100,
+                (progressEvent.loaded / progressEvent.total) * 100
               );
               options.onProgress(progress);
             }
-          },
+          }
         };
 
         const response = await axios(config);
@@ -112,13 +118,13 @@ const useMutation = () => {
             requestBody: options?.body,
             status: res?.status,
             statusText: res?.statusText,
-            responseBody: res?.data,
+            responseBody: res?.data
           });
 
           toast.error(
             error.response?.data?.message ||
               error.response?.data?.error ||
-              "Something went wrong !!",
+              "Something went wrong !!"
           );
         } else {
           datadogLogs.logger.error("Mutation Error (Unknown)", { error });
@@ -132,7 +138,7 @@ const useMutation = () => {
         setIsLoading(false);
       }
     },
-    [], // Empty dependency array is fine now since we use refs
+    [] // Empty dependency array is fine now since we use refs
   );
 
   return { mutation, isLoading };

@@ -17,7 +17,7 @@ export function encryptPayload(data: object): string {
   const raw = pad(JSON.stringify(data));
   const encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(raw), key, {
     mode: CryptoJS.mode.ECB,
-    padding: CryptoJS.pad.NoPadding,
+    padding: CryptoJS.pad.NoPadding
   });
   return CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
 }
@@ -29,8 +29,8 @@ export function decryptPayload(encryptedBase64: string): object {
     key,
     {
       mode: CryptoJS.mode.ECB,
-      padding: CryptoJS.pad.NoPadding,
-    },
+      padding: CryptoJS.pad.NoPadding
+    }
   );
   const decryptedText = decrypted.toString(CryptoJS.enc.Utf8);
   return JSON.parse(unpad(decryptedText));

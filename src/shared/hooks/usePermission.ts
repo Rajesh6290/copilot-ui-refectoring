@@ -1,6 +1,10 @@
 import { create } from "zustand";
 import { datadogLogs } from "@datadog/browser-logs";
-import { getFromLocalStorage,removeFromLocalStorage, setLocalStorageItem } from "../utils";
+import {
+  getFromLocalStorage,
+  removeFromLocalStorage,
+  setLocalStorageItem
+} from "../utils";
 import { UserPermissionPayload } from "../types/user";
 type AuthState = {
   isUserLoading: boolean;
@@ -63,8 +67,8 @@ const usePermission = create<AuthState>((set, get) => ({
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${accessToken}`,
-        },
+          Authorization: `Bearer ${accessToken}`
+        }
       });
 
       if (!res.ok) {
@@ -78,14 +82,14 @@ const usePermission = create<AuthState>((set, get) => ({
           method: "GET",
           status: res.status,
           statusText: res.statusText,
-          responseBody,
+          responseBody
         });
       }
 
       if (res?.status === 401) {
-       if (typeof window !== "undefined") {
-      removeFromLocalStorage("ACCESS_TOKEN");
-    }
+        if (typeof window !== "undefined") {
+          removeFromLocalStorage("ACCESS_TOKEN");
+        }
         set({ user: null, isUserLoading: false, lastFetchTime: null });
         // Only redirect if not already on auth pages to prevent loops
         if (
@@ -103,7 +107,7 @@ const usePermission = create<AuthState>((set, get) => ({
         set({
           user: response ?? {},
           isUserLoading: false,
-          lastFetchTime: Date.now(),
+          lastFetchTime: Date.now()
         });
         setLocalStorageItem("DATETIMEFORMAT", response?.data_time);
         return;
@@ -111,7 +115,7 @@ const usePermission = create<AuthState>((set, get) => ({
     } catch {
       set({ user: null, isUserLoading: false, lastFetchTime: null });
     }
-  },
+  }
 }));
 
 export default usePermission;

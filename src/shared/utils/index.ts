@@ -134,7 +134,7 @@ export const useCurrentMenuItem = () => {
           label: (feature.metadata?.label as string) || "",
           type: "feature",
           buttons: (feature.buttons || []) as Button[],
-          tabs: (feature.tabs || []) as Tab[],
+          tabs: (feature.tabs || []) as Tab[]
         });
 
         // Add sub-features if they exist
@@ -149,33 +149,39 @@ export const useCurrentMenuItem = () => {
             parentLabel: (feature.metadata?.label as string) || "",
             type: "sub_feature",
             buttons: (subFeature.buttons || []) as Button[],
-            tabs: (subFeature.tabs || []) as Tab[],
+            tabs: (subFeature.tabs || []) as Tab[]
           });
         });
 
         return items;
-      }),
+      })
   );
 
   // Filter out items that are not shown or don't have read permission
   const visibleMenuItems = allMenuItems.filter(
     (item: FlattenedMenuItem) =>
-      item?.permission?.is_shown && item?.permission?.actions?.read,
+      item?.permission?.is_shown && item?.permission?.actions?.read
   );
 
   // Sort by route length (longer first)
   visibleMenuItems.sort(
     (a: FlattenedMenuItem, b: FlattenedMenuItem) =>
-      (b.route?.length || 0) - (a.route?.length || 0),
+      (b.route?.length || 0) - (a.route?.length || 0)
   );
 
   // Find the best match
   const matchedItem = visibleMenuItems.find((item: FlattenedMenuItem) => {
-    if (!item.route || item.route === "#" || item.route === "") {return false};
+    if (!item.route || item.route === "#" || item.route === "") {
+      return false;
+    }
 
     const normalizedRoute = item.route.replace(/\/$/, "") || "/";
-    if (normalizedRoute === "/") {return normalizedPathname === "/"};
-    if (normalizedPathname === normalizedRoute) {return true};
+    if (normalizedRoute === "/") {
+      return normalizedPathname === "/";
+    }
+    if (normalizedPathname === normalizedRoute) {
+      return true;
+    }
 
     return normalizedPathname.startsWith(normalizedRoute + "/");
   });
@@ -187,7 +193,7 @@ export const useResponsiveBreakpoints = () => {
   const [breakpoints, setBreakpoints] = useState({
     isMobile: false,
     isTablet: false,
-    isDesktop: false,
+    isDesktop: false
   });
 
   useEffect(() => {
@@ -196,7 +202,7 @@ export const useResponsiveBreakpoints = () => {
       setBreakpoints({
         isMobile: width < 640,
         isTablet: width >= 640 && width < 1024,
-        isDesktop: width >= 1024,
+        isDesktop: width >= 1024
       });
     };
 
@@ -215,7 +221,7 @@ export interface DateTimeSettings {
 
 export const formatDateTime = (
   dateInput: string | Date | number | null | undefined,
-  settings: DateTimeSettings,
+  settings: DateTimeSettings
 ): string => {
   if (dateInput === null || dateInput === undefined) {
     return "";
@@ -247,7 +253,7 @@ export const formatDateTime = (
     // Convert to timezone and return ISO string
     const zonedDate = toZonedTime(dateObj, timezone);
     return zonedDate.toISOString();
-  } catch  {
+  } catch {
     return "";
   }
 };

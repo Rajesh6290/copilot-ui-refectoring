@@ -26,7 +26,7 @@ interface Button {
   metadata: Metadata;
   permission: Permission;
   buttons?: Button[]; // for nested buttons (e.g., view-application → add-model, etc.)
-  tabs?: Tab[];     // rare case, but exists in view-application
+  tabs?: Tab[]; // rare case, but exists in view-application
 }
 
 interface Tab {

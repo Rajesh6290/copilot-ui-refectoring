@@ -1,4 +1,3 @@
-
 import useSWR, { SWRConfiguration } from "swr";
 import { datadogLogs } from "@datadog/browser-logs";
 import { getFromLocalStorage } from "../utils";
@@ -30,7 +29,7 @@ const useSwr = (path: string | null, options?: SWRConfiguration) => {
 
     const res = await fetch(url, {
       method: "GET",
-      headers,
+      headers
     });
     let data;
     try {
@@ -45,7 +44,7 @@ const useSwr = (path: string | null, options?: SWRConfiguration) => {
         url,
         status: res.status,
         statusText: res.statusText,
-        responseBody: data,
+        responseBody: data
       });
     }
 
@@ -57,8 +56,8 @@ const useSwr = (path: string | null, options?: SWRConfiguration) => {
     fetcher,
     {
       ...options,
-      revalidateOnFocus: false,
-    },
+      revalidateOnFocus: false
+    }
   );
 
   return {
@@ -67,7 +66,7 @@ const useSwr = (path: string | null, options?: SWRConfiguration) => {
     isValidating,
     isLoading,
     mutate,
-    pagination: data?.data?.pagination,
+    pagination: data?.data?.pagination
   };
 };
 

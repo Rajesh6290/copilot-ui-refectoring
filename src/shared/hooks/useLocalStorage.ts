@@ -5,7 +5,7 @@ type SetValue<T> = T | ((val: T) => T);
 
 function useLocalStorage<T>(
   key: string,
-  initialValue: T,
+  initialValue: T
 ): [T, (value: SetValue<T>) => void] {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
@@ -15,7 +15,7 @@ function useLocalStorage<T>(
       } else {
         return initialValue;
       }
-    } catch  {
+    } catch {
       return initialValue;
     }
   });
@@ -24,14 +24,14 @@ function useLocalStorage<T>(
       if (typeof window !== "undefined") {
         window.localStorage.setItem(key, JSON.stringify(storedValue));
       }
-    } catch  {
+    } catch {
       toast.error("Could not store data in localStorage");
     }
   }, [key, storedValue]);
 
   const setValue = (value: SetValue<T>) => {
     setStoredValue((prevValue) =>
-      value instanceof Function ? value(prevValue) : value,
+      value instanceof Function ? value(prevValue) : value
     );
   };
 
