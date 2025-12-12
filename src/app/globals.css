@@ -1,10 +1,5 @@
 /* Tailwind v4 Configuration */
 @import "tailwindcss";
-
-/* Import Google Fonts */
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
-
-/* Theme Configuration */
 @theme {
   /* Font Family */
   --font-family-satoshi: Satoshi, sans-serif;
