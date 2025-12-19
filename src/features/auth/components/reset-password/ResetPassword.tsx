@@ -463,7 +463,7 @@ const ResetPassword = () => {
               </div>
             </div>
             <img
-              src="/images/sideBarLogoDark.png"
+              src="/sideBarLogoDark.svg"
               alt="logo"
               className="mb-8 h-fit w-72 object-center"
             />

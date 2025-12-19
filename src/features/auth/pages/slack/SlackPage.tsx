@@ -1,3 +1,4 @@
+"use client";
 import Loader from "@/shared/common/Loader";
 import dynamic from "next/dynamic";
 const Slack = dynamic(() => import("../../components/slack/Slack"), {
