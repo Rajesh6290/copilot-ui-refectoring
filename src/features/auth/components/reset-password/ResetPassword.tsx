@@ -57,7 +57,7 @@ const ResetPassword = () => {
           setStep("password");
         } else if (result.status === "complete") {
           await setActive({ session: result.createdSessionId });
-          router.push("/process-selection");
+          router.push("/auth/process-selection");
         }
       } catch (err: unknown) {
         setErrors({
@@ -98,7 +98,7 @@ const ResetPassword = () => {
 
         if (result.status === "complete") {
           await setActive({ session: result.createdSessionId });
-          router.push("/process-selection");
+          router.push("/auth/process-selection");
         }
       } catch (err: unknown) {
         setErrors({

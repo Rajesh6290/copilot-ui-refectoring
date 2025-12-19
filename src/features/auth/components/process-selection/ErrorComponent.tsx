@@ -17,7 +17,7 @@ const ErrorComponent = ({
             <div className="relative">
               <div className="relative h-20 w-20 overflow-hidden rounded-full bg-white p-4 shadow-md sm:h-24 sm:w-24 sm:p-5 dark:bg-gray-800">
                 <Image
-                  src="/access-control.png"
+                  src="/access-control.svg"
                   alt="Logo"
                   width={80}
                   height={80}

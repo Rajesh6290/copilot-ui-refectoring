@@ -99,4 +99,5 @@ export interface UserPermissionPayload {
   date_time: DateTimeConfig;
   language: string; // e.g., "en"
   resources: Resources;
+  trust_center_generate: boolean;
 }

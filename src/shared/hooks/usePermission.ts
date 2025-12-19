@@ -101,6 +101,21 @@ const usePermission = create<AuthState>((set, get) => ({
         }
         return;
       }
+      if (res?.status === 404) {
+        if (typeof window !== "undefined") {
+          removeFromLocalStorage("ACCESS_TOKEN");
+        }
+        set({ user: null, isUserLoading: false, lastFetchTime: null });
+        // Only redirect if not already on auth pages to prevent loops
+        if (
+          typeof window !== "undefined" &&
+          !window.location.pathname.includes("/auth/") &&
+          !window.location.pathname.includes("/sign")
+        ) {
+          window.location.href = "/auth/signin";
+        }
+        return;
+      }
 
       if (res?.status === 200) {
         const response = (await res.json()) || null;

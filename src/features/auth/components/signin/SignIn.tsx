@@ -156,7 +156,7 @@ const SignIn = () => {
 
         if (result.status === "complete") {
           await setActive({ session: result.createdSessionId });
-          router.push("/process-selection");
+          router.push("/auth/process-selection");
         }
       } catch (err: unknown) {
         setErrors({
@@ -239,7 +239,7 @@ const SignIn = () => {
 
         if (result.status === "complete") {
           await setActive({ session: result.createdSessionId });
-          router.push("/process-selection");
+          router.push("/auth/process-selection");
         }
       } catch (err: unknown) {
         setErrors({
@@ -262,8 +262,8 @@ const SignIn = () => {
       try {
         await signIn.authenticateWithRedirect({
           strategy: provider as OAuthStrategy,
-          redirectUrl: "/process-selection",
-          redirectUrlComplete: "/process-selection"
+          redirectUrl: "/auth/process-selection",
+          redirectUrlComplete: "/auth/process-selection"
         });
       } catch {
         setErrors({ email: "SSO login failed. Please try again." });
@@ -352,15 +352,15 @@ const SignIn = () => {
                       autoComplete="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`block w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:ring-2 focus:outline-none ${
+                      className={`block w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 ${
                         errors.email
                           ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                          : "focus:border-tertiary-500 focus:ring-tertiary-500/20 border-gray-200"
+                          : "border-gray-200 focus:border-tertiary-500 focus:ring-tertiary-500/20"
                       }`}
                       placeholder="Enter your email"
                     />
                     {validateEmail(email) && email && (
-                      <div className="absolute top-1/2 right-3 -translate-y-1/2">
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2">
                         <svg
                           className="h-5 w-5 text-green-500"
                           fill="none"
@@ -385,9 +385,9 @@ const SignIn = () => {
                 <button
                   type="submit"
                   disabled={isLoading || !validateEmail(email)}
-                  className="group from-tertiary-600 hover:from-tertiary-700 focus:ring-tertiary-500/50 relative w-full overflow-hidden rounded-xl bg-linear-to-r to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-tertiary-600 to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:from-tertiary-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tertiary-500/50 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  <div className="absolute inset-0 -translate-x-full cursor-pointer bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+                  <div className="absolute inset-0 -translate-x-full cursor-pointer bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
                   {isLoading ? (
                     <div className="flex cursor-pointer items-center justify-center space-x-2">
                       <svg
@@ -430,7 +430,7 @@ const SignIn = () => {
                       autoComplete="current-password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`focus:border-tertiary-500 focus:ring-tertiary-500/20 block w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:ring-2 focus:outline-none ${
+                      className={`block w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:border-tertiary-500 focus:outline-none focus:ring-2 focus:ring-tertiary-500/20 ${
                         errors.password ? "border-red-300" : "border-gray-200"
                       }`}
                       placeholder="Enter your password"
@@ -438,7 +438,7 @@ const SignIn = () => {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute top-1/2 right-3 -translate-y-1/2 text-gray-400 transition-colors hover:text-gray-600"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 transition-colors hover:text-gray-600"
                     >
                       {showPassword ? (
                         <svg
@@ -523,7 +523,7 @@ const SignIn = () => {
                   <button
                     type="button"
                     onClick={() => router.push("/auth/forgot-password")}
-                    className="text-tertiary-600 hover:text-tertiary-800 cursor-pointer text-sm font-semibold transition-colors"
+                    className="cursor-pointer text-sm font-semibold text-tertiary-600 transition-colors hover:text-tertiary-800"
                   >
                     Forgot password?
                   </button>
@@ -532,9 +532,9 @@ const SignIn = () => {
                 <button
                   type="submit"
                   disabled={isLoading || !password}
-                  className="group from-tertiary-600 hover:from-tertiary-700 focus:ring-tertiary-500/50 relative w-full overflow-hidden rounded-xl bg-linear-to-r to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-tertiary-600 to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:from-tertiary-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tertiary-500/50 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
                   {isLoading ? (
                     <div className="flex cursor-pointer items-center justify-center space-x-2">
                       <svg
@@ -601,10 +601,10 @@ const SignIn = () => {
                         }
                         onKeyDown={(e) => handleCodeKeyDown(index, e)}
                         onPaste={index === 0 ? handleCodePaste : undefined}
-                        className={`h-12 w-12 rounded-xl border bg-white text-center text-lg font-semibold transition-all duration-200 focus:ring-2 focus:outline-none ${
+                        className={`h-12 w-12 rounded-xl border bg-white text-center text-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 ${
                           errors.code
                             ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                            : "focus:border-tertiary-500 focus:ring-tertiary-500/20 border-gray-200"
+                            : "border-gray-200 focus:border-tertiary-500 focus:ring-tertiary-500/20"
                         }`}
                         placeholder="•"
                       />
@@ -625,9 +625,9 @@ const SignIn = () => {
                 <button
                   type="submit"
                   disabled={isLoading || code.join("").length !== 6}
-                  className="group from-tertiary-600 hover:from-tertiary-700 focus:ring-tertiary-500/50 relative w-full overflow-hidden rounded-xl bg-linear-to-r to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-tertiary-600 to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:from-tertiary-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tertiary-500/50 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  <div className="absolute inset-0 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+                  <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
                   {isLoading ? (
                     <div className="flex items-center justify-center space-x-2">
                       <svg
@@ -704,7 +704,7 @@ const SignIn = () => {
                       type="button"
                       onClick={() => handleSSOLogin(provider.id)}
                       disabled={isLoading}
-                      className="flex cursor-pointer items-center justify-center space-x-3 rounded-xl border border-gray-200 bg-white px-4 py-3 font-medium text-gray-700 shadow-sm transition-all duration-200 hover:bg-gray-50 hover:shadow-md focus:ring-2 focus:ring-gray-500/20 focus:outline-none disabled:opacity-70"
+                      className="flex cursor-pointer items-center justify-center space-x-3 rounded-xl border border-gray-200 bg-white px-4 py-3 font-medium text-gray-700 shadow-sm transition-all duration-200 hover:bg-gray-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-500/20 disabled:opacity-70"
                     >
                       {provider.icon}
                       <span>{provider.name}</span>
@@ -716,6 +716,8 @@ const SignIn = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Loading overlay for redirects */}
       {isLoading && (authStep === "sso" || isSignedIn) && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <Loader />

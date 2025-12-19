@@ -69,8 +69,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
               <img
                 src={
                   resolvedTheme === "dark"
-                    ? "/images/sideBarLogoDark.png"
-                    : "/images/sideBarLogo.png"
+                    ? "/sideBarLogoDark.svg"
+                    : "/sideBarLogo.svg"
                 }
                 alt="sidebar logo"
                 className="h-fit w-full cursor-pointer object-contain"
@@ -169,8 +169,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
                 <img
                   src={
                     resolvedTheme === "dark"
-                      ? "/images/sideBarLogoDark.png"
-                      : "/images/sideBarLogo.png"
+                      ? "/sideBarLogoDark.svg"
+                      : "/sideBarLogo.svg"
                   }
                   alt="sidebar logo"
                   className="h-fit w-full cursor-pointer object-contain"

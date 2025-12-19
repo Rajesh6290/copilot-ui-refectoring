@@ -5,6 +5,53 @@ declare global {
     webkitSpeechRecognition: SpeechRecognitionConstructor;
   }
 }
+
+interface SpeechRecognitionEvent extends Event {
+  readonly resultIndex: number;
+  readonly results: SpeechRecognitionResultList;
+}
+
+interface SpeechRecognitionErrorEvent extends Event {
+  readonly error: string;
+  readonly message: string;
+}
+
+interface SpeechRecognitionResult {
+  readonly [index: number]: SpeechRecognitionAlternative;
+  readonly length: number;
+  readonly isFinal: boolean;
+}
+
+interface SpeechRecognitionAlternative {
+  readonly transcript: string;
+  readonly confidence: number;
+}
+
+interface SpeechRecognitionResultList {
+  readonly [index: number]: SpeechRecognitionResult;
+  readonly length: number;
+}
+
+interface SpeechRecognitionConstructor {
+  new (): SpeechRecognition;
+}
+
+interface SpeechRecognition extends EventTarget {
+  grammars: SpeechGrammarList;
+  lang: string;
+  continuous: boolean;
+  interimResults: boolean;
+  maxAlternatives: number;
+  serviceURI: string;
+  onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+  onresult: ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any) | null;
+  onerror: ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any) | null;
+  onend: ((this: SpeechRecognition, ev: Event) => any) | null;
+  start(): void;
+  stop(): void;
+  abort(): void;
+}
+
 declare global {
   interface Window {
     // eslint-disable-next-line @typescript-eslint/naming-convention

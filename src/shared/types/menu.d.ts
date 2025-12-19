@@ -87,3 +87,87 @@ interface FlattenedMenuItem {
   buttons?: Button[];
   tabs?: Tab[];
 }
+
+
+interface ButtonMetadata {
+  reference: string;
+  resource_type: string;
+  label: string;
+  icon: string;
+  route: string;
+}
+
+interface SideButton {
+  button_name: string;
+  resource_id: string;
+  metadata: ButtonMetadata;
+  permission: Permission;
+}
+
+interface TabMetadata {
+  reference: string;
+  resource_type: string;
+  label: string;
+  icon: string;
+  route: string;
+}
+
+interface Tab {
+  tab_name: string;
+  resource_id: string;
+  buttons: SideButton[];
+  metadata: TabMetadata;
+  permission: Permission;
+}
+
+interface SubFeatureMetadata {
+  reference: string;
+  resource_type: string;
+  label: string;
+  icon: string;
+  route: string;
+}
+
+interface SubFeature {
+  sub_feature_name: string;
+  resource_id: string;
+  buttons: SideButton[];
+  tabs: Tab[];
+  sub_features: SubFeature[];
+  metadata: SubFeatureMetadata;
+  permission: Permission;
+}
+
+interface FeatureMetadata {
+  reference: string;
+  resource_type: string;
+  label: string;
+  icon: string;
+  route: string;
+}
+
+interface Feature {
+  feature_name: string;
+  resource_id: string;
+  buttons: SideButton[];
+  tabs: Tab[];
+  sub_features: SubFeature[];
+  metadata: FeatureMetadata;
+  permission: Permission;
+}
+
+interface FeatureGroupMetadata {
+  reference: string;
+  resource_type: string;
+  label: string;
+  icon: string;
+  route: string;
+}
+
+interface FeatureGroup {
+  feature_group_name: string;
+  resource_id: string;
+  features: Feature[];
+  metadata: FeatureGroupMetadata;
+  permission: Permission;
+}

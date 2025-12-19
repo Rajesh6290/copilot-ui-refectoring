@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import UnifiedHelpButton from "./UnifiedHelpButton";
 
 import dynamic from "next/dynamic";
+import UseProtectedRoutes from "@/shared/hooks/useProtectedRoute";
 const Navbar = dynamic(() => import("./Navbar"), {
   ssr: false
 });
@@ -25,7 +26,6 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   const {
     fullScreen,
     setFullScreen,
-    metaTitle,
     helpOpen,
     setHelpOpen,
     helpOpenMax,
@@ -34,66 +34,6 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   const name = usePathname();
   const params = useParams();
   const [sessionId, setSessionId] = useState<string>("");
-
-  useEffect(() => {
-    document.title =
-      metaTitle ||
-      "Cognitiveview: AI-Driven Compliance & Conduct Risk Automation";
-
-    function setMeta(
-      attrType: "name" | "property",
-      attr: string,
-      content: string
-    ) {
-      let element = document.head.querySelector(`meta[${attrType}="${attr}"]`);
-      if (!element) {
-        element = document.createElement("meta");
-        element.setAttribute(attrType, attr);
-        document.head.appendChild(element);
-      }
-      element.setAttribute("content", content);
-    }
-
-    setMeta(
-      "name",
-      "description",
-      "Cognitive View is an AI-powered RegTech platform that automates compliance and conduct risk monitoring by analyzing customer communications across voice, video, and text channels. It helps organizations streamline regulatory compliance, enhance customer experience, and reduce operational costs."
-    );
-    setMeta(
-      "property",
-      "og:title",
-      metaTitle ||
-        "Cognitive View: AI-Driven Compliance & Conduct Risk Automation"
-    );
-    setMeta(
-      "property",
-      "og:description",
-      "Cognitive View is an AI-powered RegTech platform that automates compliance and conduct risk monitoring by analyzing customer communications across voice, video, and text channels. It helps organizations streamline regulatory compliance, enhance customer experience, and reduce operational costs."
-    );
-    setMeta(
-      "property",
-      "og:image",
-      "https://app.cognitiveview.com/images/sideBarLogo.png"
-    );
-    setMeta("property", "og:url", "https://app.cognitiveview.com");
-
-    setMeta("name", "twitter:card", "summary_large_image");
-    setMeta(
-      "name",
-      "twitter:title",
-      "Cognitive View: AI-Driven Compliance & Conduct Risk Automation"
-    );
-    setMeta(
-      "name",
-      "twitter:description",
-      "Cognitive View is an AI-powered RegTech platform that automates compliance and conduct risk monitoring by analyzing customer communications across voice, video, and text channels. It helps organizations streamline regulatory compliance, enhance customer experience, and reduce operational costs."
-    );
-    setMeta(
-      "name",
-      "twitter:image",
-      "https://app.cognitiveview.com/images/sideBarLogo.png"
-    );
-  }, [metaTitle]);
 
   useEffect(() => {
     if (!isUserLoading && user?.user_id) {
@@ -227,5 +167,5 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// export default UseProtectedRoutes(DefaultLayout);
-export default DefaultLayout;
+export default UseProtectedRoutes(DefaultLayout);
+// export default DefaultLayout;
