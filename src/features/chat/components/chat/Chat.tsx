@@ -132,7 +132,7 @@ const Chat: React.FC<ChatProps> = ({
       <div className="relative w-full">
         {/* Help mode badge */}
         {helpModeActive && (
-          <div className="absolute top-2.5 left-2 z-10 rounded-full bg-blue-100 px-2 py-0.5 text-sm font-medium text-blue-600">
+          <div className="absolute left-2 top-2.5 z-10 rounded-full bg-blue-100 px-2 py-0.5 text-sm font-medium text-blue-600">
             @Help
           </div>
         )}
@@ -145,7 +145,7 @@ const Chat: React.FC<ChatProps> = ({
               ? "Try asking: How can I publish my Trust Center Report ? and more..."
               : "Ask Something..."
           }
-          className={`w-full resize-none bg-transparent p-2 dark:placeholder:text-sm dark:placeholder:text-neutral-500 ${helpModeActive ? "pl-18 dark:pl-18" : ""} focus:outline-none sm:text-base dark:text-white`}
+          className={`w-full resize-none bg-transparent p-2 dark:placeholder:text-sm dark:placeholder:text-neutral-500 ${helpModeActive ? "pl-18 dark:pl-18" : ""} focus:outline-none dark:text-white sm:text-base`}
           spellCheck={false}
           autoComplete="on"
           autoCorrect="on"
@@ -164,21 +164,21 @@ const Chat: React.FC<ChatProps> = ({
   };
 
   return (
-    <div className="fixed bottom-2 z-10 flex h-fit w-full items-center justify-center px-2 duration-300 lg:relative lg:z-10 lg:px-0 dark:bg-transparent">
-      <div className="bg-lightMainBackground dark:bg-darkSidebarBackground flex h-fit w-full items-start justify-center rounded-2xl drop-shadow-lg lg:w-4/5 xl:w-2/3">
+    <div className="fixed bottom-2 z-10 flex h-fit w-full items-center justify-center px-2 duration-300 dark:bg-transparent lg:relative lg:z-10 lg:px-0">
+      <div className="flex h-fit w-full items-start justify-center rounded-2xl bg-lightMainBackground drop-shadow-lg dark:bg-darkSidebarBackground lg:w-4/5 xl:w-2/3">
         <div className="flex w-full flex-col rounded-xl dark:shadow-md">
           {/* Attached Collection Display */}
           {selectedCollections && selectedCollections?.collection_id && (
-            <div className="relative mt-2 ml-2 flex w-52 max-w-md items-center gap-1 rounded-lg border border-neutral-200 px-2 py-1">
+            <div className="relative ml-2 mt-2 flex w-52 max-w-md items-center gap-1 rounded-lg border border-neutral-200 px-2 py-1">
               <button
                 onClick={() => handleDeleteCollection()}
-                className="absolute -top-1 -right-1 cursor-pointer border-none bg-transparent p-0 transition-transform hover:scale-110"
+                className="absolute -right-1 -top-1 cursor-pointer border-none bg-transparent p-0 transition-transform hover:scale-110"
                 aria-label="Remove collection"
                 type="button"
               >
                 <MdCancel className="text-sm text-black dark:invert" />
               </button>
-              <span className="bg-tertiary flex size-8 items-center justify-center rounded-md">
+              <span className="flex size-8 items-center justify-center rounded-md bg-tertiary">
                 <FileText size={16} className="text-white" />
               </span>
               <span className="flex w-full flex-col">
@@ -220,11 +220,11 @@ const Chat: React.FC<ChatProps> = ({
                       size={17}
                       className="text-gray-500 dark:invert"
                     />
-                    <h3 className="ml-2 hidden font-[family-name:var(--font-geist-mono)] text-sm font-medium tracking-wide text-gray-600 md:block dark:text-white">
+                    <h3 className="ml-2 hidden font-[family-name:var(--font-geist-mono)] text-sm font-medium tracking-wide text-gray-600 dark:text-white md:block">
                       All Sources
                     </h3>
                   </button>
-                  <span className="absolute -top-8 left-1/2 z-9999 hidden w-fit -translate-x-1/2 transform rounded bg-gray-800 px-2 py-1 text-xs text-nowrap text-white shadow-md group-hover:block">
+                  <span className="absolute -top-8 left-1/2 z-9999 hidden w-fit -translate-x-1/2 transform text-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-md group-hover:block">
                     Add collection from knowledge
                   </span>
                 </div>
@@ -276,7 +276,7 @@ const Chat: React.FC<ChatProps> = ({
                       Help Center
                     </h3>
                   </button>
-                  <span className="absolute -top-8 left-1/2 hidden w-fit -translate-x-1/2 transform rounded bg-gray-800 px-2 py-1 text-xs text-nowrap text-white shadow-md group-hover:block">
+                  <span className="absolute -top-8 left-1/2 hidden w-fit -translate-x-1/2 transform text-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-md group-hover:block">
                     Ask help related query
                   </span>
                 </div>
@@ -303,11 +303,11 @@ const Chat: React.FC<ChatProps> = ({
                       className="text-gray-500 dark:invert"
                       size={17}
                     />
-                    <h3 className="ml-2 hidden font-[family-name:var(--font-geist-mono)] text-sm font-medium tracking-wide text-gray-600 md:block dark:text-white">
+                    <h3 className="ml-2 hidden font-[family-name:var(--font-geist-mono)] text-sm font-medium tracking-wide text-gray-600 dark:text-white md:block">
                       Browse Prompt
                     </h3>
                   </button>
-                  <span className="absolute -top-8 left-1/2 hidden w-fit -translate-x-1/2 transform rounded bg-gray-800 px-2 py-1 text-xs text-nowrap text-white shadow-md group-hover:block">
+                  <span className="absolute -top-8 left-1/2 hidden w-fit -translate-x-1/2 transform text-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-md group-hover:block">
                     Quick prompts for compliance & governance
                   </span>
                 </div>
@@ -375,14 +375,14 @@ const Chat: React.FC<ChatProps> = ({
                     Run a Trace
                   </h3>
                 </button>
-                <span className="absolute -top-8 left-1/2 hidden w-fit -translate-x-1/2 transform rounded bg-gray-800 px-2 py-1 text-xs text-nowrap text-white shadow-md group-hover:block">
+                <span className="absolute -top-8 left-1/2 hidden w-fit -translate-x-1/2 transform text-nowrap rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-md group-hover:block">
                   Know your Responsible AI Score.
                 </span>
               </div>
             </div>
 
             {/* Right-side Controls */}
-            <div className="mr-2 ml-auto flex items-center gap-5">
+            <div className="ml-auto mr-2 flex items-center gap-5">
               {/* Voice Recognition Button */}
               {searchString?.length === 0 && (
                 <button

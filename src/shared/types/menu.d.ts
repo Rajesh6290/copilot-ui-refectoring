@@ -88,7 +88,6 @@ interface FlattenedMenuItem {
   tabs?: Tab[];
 }
 
-
 interface ButtonMetadata {
   reference: string;
   resource_type: string;

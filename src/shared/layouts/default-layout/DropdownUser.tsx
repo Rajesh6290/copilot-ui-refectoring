@@ -194,7 +194,7 @@ const DropdownUser = () => {
     showFallback?: boolean;
   }) => (
     <div
-      className={`${size} border-tertiary-200 from-tertiary-500 to-tertiary-600 dark:border-tertiary-700 flex items-center justify-center overflow-hidden rounded-full border-2 bg-gradient-to-br`}
+      className={`${size} flex items-center justify-center overflow-hidden rounded-full border-2 border-tertiary-200 bg-gradient-to-br from-tertiary-500 to-tertiary-600 dark:border-tertiary-700`}
     >
       {userData.avatar ? (
         <img
@@ -225,7 +225,7 @@ const DropdownUser = () => {
     <ClickOutside onClick={handleDropdownClose} className="relative">
       <motion.div
         onClick={handleDropdownToggle}
-        className="dark:hover:bg-darkMainBackground flex cursor-pointer items-center gap-3 rounded-xl transition-all duration-200 hover:bg-gray-50/80"
+        className="flex cursor-pointer items-center gap-3 rounded-xl transition-all duration-200 hover:bg-gray-50/80 dark:hover:bg-darkMainBackground"
       >
         <div className="hidden flex-col items-end sm:flex">
           <span className="block text-sm font-semibold text-gray-900 dark:text-white">
@@ -244,7 +244,7 @@ const DropdownUser = () => {
             <Avatar />
           </motion.div>
 
-          <div className="absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-2 border-white bg-green-500 dark:border-gray-800"></div>
+          <div className="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-white bg-green-500 dark:border-gray-800"></div>
         </div>
       </motion.div>
 
@@ -255,9 +255,9 @@ const DropdownUser = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute top-full right-0 z-50 mt-4 w-80 origin-top-right"
+            className="absolute right-0 top-full z-50 mt-4 w-80 origin-top-right"
           >
-            <div className="dark:bg-darkSidebarBackground rounded-xl border border-gray-200/50 bg-white/95 shadow-xl shadow-black/5 backdrop-blur-xl dark:border-neutral-800 dark:shadow-black/20">
+            <div className="rounded-xl border border-gray-200/50 bg-white/95 shadow-xl shadow-black/5 backdrop-blur-xl dark:border-neutral-800 dark:bg-darkSidebarBackground dark:shadow-black/20">
               <div className="border-b border-gray-100 p-4 dark:border-neutral-800">
                 <div className="flex items-center gap-3">
                   <Avatar size="h-12 w-12" />
@@ -288,7 +288,7 @@ const DropdownUser = () => {
                     onClick={() => handleMenuItemClick(item.action)}
                     className="group flex w-full items-center gap-3 rounded-lg p-3 text-left transition-all duration-200 hover:bg-gray-50 dark:hover:bg-gray-700/50"
                   >
-                    <div className="dark:bg-darkMainBackground dark:group-hover:bg-darkHoverBackground flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 transition-colors duration-200 group-hover:bg-white">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-100 transition-colors duration-200 group-hover:bg-white dark:bg-darkMainBackground dark:group-hover:bg-darkHoverBackground">
                       <item.icon className={`h-4 w-4 ${item.color}`} />
                     </div>
                     <div className="min-w-0 flex-1">

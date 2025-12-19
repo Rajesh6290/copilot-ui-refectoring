@@ -6,7 +6,7 @@ const ErrorComponent = ({
   errors: string;
   handleReset: () => void;
 }) => (
-  <div className="flex min-h-dvh flex-col items-center justify-center bg-gray-50 px-4 py-4 sm:px-5 dark:bg-gray-900">
+  <div className="flex min-h-dvh flex-col items-center justify-center bg-gray-50 px-4 py-4 dark:bg-gray-900 sm:px-5">
     <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-500 dark:bg-gray-800 dark:shadow-red-900/10">
       <div className="relative z-10 p-6 sm:p-8 md:p-10">
         <div className="absolute inset-0 bg-white dark:bg-gray-800"></div>
@@ -15,7 +15,7 @@ const ErrorComponent = ({
           {/* Logo Section */}
           <div className="my-4 flex w-full items-center justify-center sm:my-6">
             <div className="relative">
-              <div className="relative h-20 w-20 overflow-hidden rounded-full bg-white p-4 shadow-md sm:h-24 sm:w-24 sm:p-5 dark:bg-gray-800">
+              <div className="relative h-20 w-20 overflow-hidden rounded-full bg-white p-4 shadow-md dark:bg-gray-800 sm:h-24 sm:w-24 sm:p-5">
                 <Image
                   src="/access-control.svg"
                   alt="Logo"
@@ -28,11 +28,11 @@ const ErrorComponent = ({
             </div>
           </div>
 
-          <h1 className="mb-2 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-center text-2xl font-extrabold text-transparent sm:mb-3 sm:text-3xl dark:from-red-400 dark:to-red-300">
+          <h1 className="mb-2 bg-gradient-to-r from-red-500 to-red-600 bg-clip-text text-center text-2xl font-extrabold text-transparent dark:from-red-400 dark:to-red-300 sm:mb-3 sm:text-3xl">
             Verification Failed
           </h1>
 
-          <div className="mb-5 overflow-hidden rounded-xl bg-red-50 p-3 shadow-sm sm:mb-6 sm:p-4 dark:bg-red-900/20">
+          <div className="mb-5 overflow-hidden rounded-xl bg-red-50 p-3 shadow-sm dark:bg-red-900/20 sm:mb-6 sm:p-4">
             <p className="mx-auto text-red-600 dark:text-red-400">
               <span className="flex items-center gap-2">
                 <svg
@@ -48,7 +48,7 @@ const ErrorComponent = ({
                 </svg>
                 <span className="text-sm sm:text-base">{errors}</span>
               </span>
-              <span className="mt-1 block text-xs text-red-500 sm:text-sm dark:text-red-400">
+              <span className="mt-1 block text-xs text-red-500 dark:text-red-400 sm:text-sm">
                 Please try again or contact support for assistance.
               </span>
             </p>
@@ -56,7 +56,7 @@ const ErrorComponent = ({
 
           <button
             onClick={handleReset}
-            className="group mt-5 w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-3 text-center text-sm font-semibold text-white shadow-md transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-blue-100 sm:mt-6 sm:px-6 dark:hover:shadow-blue-900/20"
+            className="group mt-5 w-full rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 px-5 py-3 text-center text-sm font-semibold text-white shadow-md transition-all duration-300 hover:from-blue-600 hover:to-blue-700 hover:shadow-blue-100 dark:hover:shadow-blue-900/20 sm:mt-6 sm:px-6"
           >
             <div className="flex items-center justify-center space-x-2">
               <svg
@@ -76,7 +76,7 @@ const ErrorComponent = ({
             </div>
           </button>
 
-          <p className="mt-3 text-center text-xs text-gray-500 sm:mt-4 dark:text-gray-400">
+          <p className="mt-3 text-center text-xs text-gray-500 dark:text-gray-400 sm:mt-4">
             Need help? Contact our support team
           </p>
         </div>

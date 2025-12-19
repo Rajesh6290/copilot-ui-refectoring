@@ -387,31 +387,31 @@ const CustomNavigationTab = () => {
                       e.stopPropagation();
                       setOpenDropdown(isOpen ? null : index);
                     }}
-                    className={`text-tertiary-600 flex items-center gap-1.5 rounded-md px-3 py-1.5 font-medium transition-all hover:bg-gray-50 ${
-                      isOpen ? "bg-tertiary-50 ring-tertiary-500 ring-2" : ""
+                    className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 font-medium text-tertiary-600 transition-all hover:bg-gray-50 ${
+                      isOpen ? "bg-tertiary-50 ring-2 ring-tertiary-500" : ""
                     }`}
                   >
                     {item.label}
                     <ChevronRight className="h-3 w-3 rotate-90 text-gray-500" />
                   </button>
                 ) : isLast || !item.isClickable || isHash ? (
-                  <span className="text-tertiary px-3 py-1.5 font-semibold capitalize">
+                  <span className="px-3 py-1.5 font-semibold capitalize text-tertiary">
                     {item.label}
                   </span>
                 ) : (
                   <Link
                     href={item.route}
-                    className="text-tertiary-600 rounded-md px-3 py-1.5 font-medium transition-all hover:bg-gray-50 hover:underline"
+                    className="rounded-md px-3 py-1.5 font-medium text-tertiary-600 transition-all hover:bg-gray-50 hover:underline"
                   >
                     {item.label}
                   </Link>
                 )}
 
                 {isOpen && hasDropdown && (
-                  <div className="animate-in fade-in slide-in-from-top-1 absolute top-full left-0 z-50 mt-1 w-72 rounded-lg border border-gray-200 bg-white shadow-xl duration-150">
+                  <div className="animate-in fade-in slide-in-from-top-1 absolute left-0 top-full z-50 mt-1 w-72 rounded-lg border border-gray-200 bg-white shadow-xl duration-150">
                     {validChildren.length > 0 && (
                       <div className="border-b border-gray-100 p-2">
-                        <div className="mb-2 px-3 text-[10px] font-semibold tracking-wider text-gray-400 uppercase">
+                        <div className="mb-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-gray-400">
                           Navigate to
                         </div>
                         <div className="space-y-0.5">
@@ -428,9 +428,9 @@ const CustomNavigationTab = () => {
                                 key={idx}
                                 href={destinationUrl}
                                 onClick={() => setOpenDropdown(null)}
-                                className="group hover:bg-tertiary-50 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-gray-700 transition-all"
+                                className="group flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-gray-700 transition-all hover:bg-tertiary-50"
                               >
-                                <div className="bg-tertiary-50 group-hover:bg-tertiary-100 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition-colors">
+                                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-tertiary-50 transition-colors group-hover:bg-tertiary-100">
                                   {renderIcon(
                                     childIcon,
                                     "text-tertiary-600",
@@ -438,7 +438,7 @@ const CustomNavigationTab = () => {
                                   )}
                                 </div>
                                 <div className="flex min-w-0 flex-1 flex-col">
-                                  <span className="truncate leading-tight font-medium text-gray-900">
+                                  <span className="truncate font-medium leading-tight text-gray-900">
                                     {childLabel}
                                   </span>
                                   {child.metadata?.route && (

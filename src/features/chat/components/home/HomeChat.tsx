@@ -193,10 +193,10 @@ const Homechat: React.FC = () => {
                 height={70}
                 priority={true}
               />
-              <h2 className="mb-2 text-lg font-bold text-gray-900 sm:text-2xl dark:text-white">
+              <h2 className="mb-2 text-lg font-bold text-gray-900 dark:text-white sm:text-2xl">
                 Welcome to Chat+
               </h2>
-              <p className="text-center text-sm font-medium text-gray-700 sm:text-base dark:text-gray-300">
+              <p className="text-center text-sm font-medium text-gray-700 dark:text-gray-300 sm:text-base">
                 Your trusted AI assistant for compliance, governance, and guided
                 support
               </p>
@@ -241,12 +241,12 @@ const Homechat: React.FC = () => {
                     setTimeout(() => textareaRef.current?.focus(), 0);
                   }
                 }}
-                className="dark:bg-darkSidebarBackground dark:hover:bg-darkMainBackground flex cursor-pointer items-center gap-3 rounded-xl bg-white p-3 shadow-sm transition-all duration-200 hover:bg-gray-50 hover:shadow-md focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:shadow-gray-900/10"
+                className="flex cursor-pointer items-center gap-3 rounded-xl bg-white p-3 shadow-sm transition-all duration-200 hover:bg-gray-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-darkSidebarBackground dark:shadow-gray-900/10 dark:hover:bg-darkMainBackground"
                 aria-label={name}
               >
                 <div className="flex size-10 items-center justify-center">
                   <motion.div
-                    className="from-tertiary-50 to-tertiary-100 text-tertiary-600 dark:from-tertiary-900/70 dark:to-tertiary-800/50 dark:text-tertiary-400 relative z-10 flex size-10 items-center justify-center rounded-full bg-gradient-to-br"
+                    className="relative z-10 flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-tertiary-50 to-tertiary-100 text-tertiary-600 dark:from-tertiary-900/70 dark:to-tertiary-800/50 dark:text-tertiary-400"
                     animate={{
                       boxShadow: [
                         "0 0 0 0 rgba(99, 102, 241, 0.2)",
@@ -277,7 +277,7 @@ const Homechat: React.FC = () => {
                   </motion.div>
                 </div>
 
-                <p className="line-clamp-1 text-xs font-medium text-gray-700 lg:line-clamp-none dark:text-gray-300">
+                <p className="line-clamp-1 text-xs font-medium text-gray-700 dark:text-gray-300 lg:line-clamp-none">
                   {name}
                 </p>
               </div>

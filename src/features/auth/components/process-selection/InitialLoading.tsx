@@ -4,13 +4,13 @@ import LoadingSpinner from "./LoadingSpinner";
 const InitialLoading = () => (
   <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-50 via-white to-slate-100 p-4 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
     <motion.div
-      className="relative w-full max-w-md overflow-hidden rounded-2xl border border-white/20 bg-white/70 p-6 text-center shadow-xl backdrop-blur-md sm:p-10 dark:border-gray-700/20 dark:bg-gray-800/70"
+      className="relative w-full max-w-md overflow-hidden rounded-2xl border border-white/20 bg-white/70 p-6 text-center shadow-xl backdrop-blur-md dark:border-gray-700/20 dark:bg-gray-800/70 sm:p-10"
       initial={{ opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
     >
       <motion.div
-        className="bg-tertiary-600 relative z-10 mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl shadow-lg sm:mb-8 sm:h-16 sm:w-16"
+        className="relative z-10 mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-tertiary-600 shadow-lg sm:mb-8 sm:h-16 sm:w-16"
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
         transition={{ delay: 0.3, duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
@@ -42,7 +42,7 @@ const InitialLoading = () => (
       </motion.div>
 
       <motion.h2
-        className="mb-2 text-xl font-bold text-gray-900 sm:mb-3 sm:text-2xl dark:text-white"
+        className="mb-2 text-xl font-bold text-gray-900 dark:text-white sm:mb-3 sm:text-2xl"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
@@ -51,7 +51,7 @@ const InitialLoading = () => (
       </motion.h2>
 
       <motion.p
-        className="text-sm text-gray-600 sm:text-base dark:text-gray-400"
+        className="text-sm text-gray-600 dark:text-gray-400 sm:text-base"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}

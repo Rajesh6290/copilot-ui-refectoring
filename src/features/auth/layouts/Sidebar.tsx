@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 const Sidebar = () => {
   return (
-    <div className="from-tertiary-600 relative hidden w-1/2 overflow-hidden bg-gradient-to-br via-indigo-600 to-purple-700 lg:flex">
+    <div className="relative hidden w-1/2 overflow-hidden bg-gradient-to-br from-tertiary-600 via-indigo-600 to-purple-700 lg:flex">
       {/* Animated Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.2),rgba(255,255,255,0))]" />
@@ -29,7 +29,7 @@ const Sidebar = () => {
 
       {/* Floating Elements */}
       <motion.div
-        className="from-tertiary-300/30 absolute top-20 left-20 h-64 w-64 rounded-full bg-gradient-to-r to-purple-400/30 blur-3xl"
+        className="absolute left-20 top-20 h-64 w-64 rounded-full bg-gradient-to-r from-tertiary-300/30 to-purple-400/30 blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.6, 0.3]
@@ -41,7 +41,7 @@ const Sidebar = () => {
         }}
       />
       <motion.div
-        className="absolute right-20 bottom-20 h-48 w-48 rounded-full bg-gradient-to-r from-indigo-300/30 to-cyan-400/30 blur-3xl"
+        className="absolute bottom-20 right-20 h-48 w-48 rounded-full bg-gradient-to-r from-indigo-300/30 to-cyan-400/30 blur-3xl"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.4, 0.7, 0.4]
@@ -76,9 +76,9 @@ const Sidebar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h2 className="text-5xl leading-tight font-bold text-white">
+            <h2 className="text-5xl font-bold leading-tight text-white">
               Welcome to the Future of
-              <span className="via-tertiary-300 block bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-cyan-300 via-tertiary-300 to-indigo-300 bg-clip-text text-transparent">
                 Responsible AI
               </span>
             </h2>

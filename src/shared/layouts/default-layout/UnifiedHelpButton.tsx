@@ -115,7 +115,7 @@ const UnifiedHelpButton = ({
   }
 
   return (
-    <div className="fixed right-6 bottom-5 z-50 hidden sm:block">
+    <div className="fixed bottom-5 right-6 z-50 hidden sm:block">
       <div className="relative flex flex-col items-end gap-3">
         <AnimatePresence>
           {isExpanded && (
@@ -140,7 +140,7 @@ const UnifiedHelpButton = ({
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={handleAIAssistant}
-                  className="bg-tertiary flex h-12 w-12 cursor-pointer items-center justify-center rounded-full text-white shadow-lg hover:bg-[#6160b0]"
+                  className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-tertiary text-white shadow-lg hover:bg-[#6160b0]"
                 >
                   {isLoading ? (
                     <CircularProgress size={20} className="!text-white" />
@@ -184,7 +184,7 @@ const UnifiedHelpButton = ({
               {[...Array(2)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="border-tertiary absolute inset-0 rounded-full border-2"
+                  className="absolute inset-0 rounded-full border-2 border-tertiary"
                   initial={{ opacity: 0, scale: 1 }}
                   animate={{
                     opacity: [0, 0.5, 0],
@@ -202,7 +202,7 @@ const UnifiedHelpButton = ({
               ))}
 
               <motion.div
-                className="bg-tertiary absolute inset-0 rounded-full blur-sm"
+                className="absolute inset-0 rounded-full bg-tertiary blur-sm"
                 animate={{
                   opacity: [0.1, 0.3, 0.1],
                   scale: [1, 1.15, 1]
@@ -217,7 +217,7 @@ const UnifiedHelpButton = ({
           )}
 
           <motion.div
-            className="bg-tertiary relative z-10 cursor-pointer overflow-hidden rounded-full text-white shadow-xl"
+            className="relative z-10 cursor-pointer overflow-hidden rounded-full bg-tertiary text-white shadow-xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsExpanded(!isExpanded)}

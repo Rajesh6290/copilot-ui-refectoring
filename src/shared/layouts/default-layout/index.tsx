@@ -5,24 +5,28 @@ import usePermission from "@/shared/hooks/usePermission";
 import { useMyContext } from "@/shared/providers/AppProvider";
 import { useAuth } from "@clerk/nextjs";
 import { useParams, usePathname } from "next/navigation";
-import { useRouter } from "nextjs-toploader/app";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import UnifiedHelpButton from "./UnifiedHelpButton";
 
-import dynamic from "next/dynamic";
 import UseProtectedRoutes from "@/shared/hooks/useProtectedRoute";
+import dynamic from "next/dynamic";
+
 const Navbar = dynamic(() => import("./Navbar"), {
   ssr: false
 });
 const Sidebar = dynamic(() => import("./Sidebar"), {
   ssr: false
 });
-const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
+
+const DefaultLayoutComponent = ({
+  children
+}: {
+  children: React.ReactNode;
+}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { signOut, userId } = useAuth();
   const { user, isUserLoading } = usePermission();
-  const router = useRouter();
   const {
     fullScreen,
     setFullScreen,
@@ -44,30 +48,6 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
       }
     }
   }, [isUserLoading, user, signOut]);
-
-  useEffect(() => {
-    if (!isUserLoading && user?.user_id) {
-      if (user?.resources?.landing_page?.trust_center_generate) {
-        router.push("/self-assessment/generate-trust-center");
-      }
-    }
-  }, [isUserLoading, user]);
-
-  useEffect(() => {
-    if (!isUserLoading && user?.user_id) {
-      if (user?.resources?.landing_page?.trust_center_view) {
-        router.push("/self-assessment/trust-center");
-      }
-    }
-  }, [isUserLoading, user]);
-
-  useEffect(() => {
-    if (!isUserLoading && user?.user_id) {
-      if (user?.resources?.landing_page?.rai_view) {
-        router.push("/self-assessment/responsible-ai");
-      }
-    }
-  }, [isUserLoading, user]);
   useEffect(() => {
     document.title =
       metaTitle ||
@@ -228,5 +208,4 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default UseProtectedRoutes(DefaultLayout);
-// export default DefaultLayout;
+export default UseProtectedRoutes(DefaultLayoutComponent);

@@ -152,7 +152,7 @@ const Slack = () => {
         animate="visible"
         className="w-full max-w-md"
       >
-        <div className="rounded-2xl border border-white/20 bg-white/80 p-8 shadow-2xl backdrop-blur-xl sm:p-10 dark:border-slate-700/50 dark:bg-slate-800/80">
+        <div className="rounded-2xl border border-white/20 bg-white/80 p-8 shadow-2xl backdrop-blur-xl dark:border-slate-700/50 dark:bg-slate-800/80 sm:p-10">
           <AnimatePresence mode="wait">
             {/* Loading State */}
             {status === "loading" && (
@@ -295,7 +295,7 @@ const Slack = () => {
                       "/system-settings?system-settings-tab=integration"
                     )
                   }
-                  className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:focus:ring-offset-slate-800"
+                  className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800"
                 >
                   Go to Settings Now
                 </motion.button>
@@ -377,7 +377,7 @@ const Slack = () => {
                       setStatus("loading");
                       fetchStatus();
                     }}
-                    className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:focus:ring-offset-slate-800"
+                    className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-800"
                   >
                     Try Again
                   </motion.button>
@@ -389,7 +389,7 @@ const Slack = () => {
                         "/system-settings?system-settings-tab=integration"
                       )
                     }
-                    className="w-full rounded-xl bg-slate-200 px-6 py-3 font-semibold text-slate-800 shadow-md transition-all duration-200 hover:bg-slate-300 hover:shadow-lg focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:outline-none dark:bg-slate-600 dark:text-slate-200 dark:hover:bg-slate-500 dark:focus:ring-offset-slate-800"
+                    className="w-full rounded-xl bg-slate-200 px-6 py-3 font-semibold text-slate-800 shadow-md transition-all duration-200 hover:bg-slate-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 dark:bg-slate-600 dark:text-slate-200 dark:hover:bg-slate-500 dark:focus:ring-offset-slate-800"
                   >
                     Back to Settings
                   </motion.button>

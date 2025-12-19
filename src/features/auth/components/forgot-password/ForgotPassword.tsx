@@ -105,7 +105,7 @@ const ForgotPassword = () => {
           </div>
           <button
             onClick={() => router.push("/auth/reset-password")}
-            className="group from-tertiary-600 hover:from-tertiary-700 focus:ring-tertiary-500/50 relative w-full overflow-hidden rounded-xl bg-gradient-to-r to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:outline-none"
+            className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-tertiary-600 to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:from-tertiary-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tertiary-500/50"
           >
             <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
             Enter reset code
@@ -143,15 +143,15 @@ const ForgotPassword = () => {
               autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={`block w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:ring-2 focus:outline-none ${
+              className={`block w-full rounded-xl border bg-white px-4 py-3.5 text-gray-900 shadow-sm transition-all duration-200 placeholder:text-gray-400 focus:outline-none focus:ring-2 ${
                 errors.email
                   ? "border-red-300 focus:border-red-500 focus:ring-red-500/20"
-                  : "focus:border-tertiary-500 focus:ring-tertiary-500/20 border-gray-200"
+                  : "border-gray-200 focus:border-tertiary-500 focus:ring-tertiary-500/20"
               }`}
               placeholder="Enter your email address"
             />
             {validateEmail(email) && email && (
-              <div className="absolute top-1/2 right-3 -translate-y-1/2">
+              <div className="absolute right-3 top-1/2 -translate-y-1/2">
                 <svg
                   className="h-5 w-5 text-green-500"
                   fill="none"
@@ -176,7 +176,7 @@ const ForgotPassword = () => {
         <button
           type="submit"
           disabled={isLoading || !validateEmail(email)}
-          className="group from-tertiary-600 hover:from-tertiary-700 focus:ring-tertiary-500/50 relative w-full overflow-hidden rounded-xl bg-gradient-to-r to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:to-indigo-700 hover:shadow-xl focus:ring-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-70"
+          className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-tertiary-600 to-indigo-600 px-4 py-3.5 font-semibold text-white shadow-lg transition-all duration-200 hover:from-tertiary-700 hover:to-indigo-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-tertiary-500/50 disabled:cursor-not-allowed disabled:opacity-70"
         >
           <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
           {isLoading ? (
@@ -234,7 +234,7 @@ const ForgotPassword = () => {
           >
             {/* Mobile Logo */}
             <div className="mb-6 flex items-center justify-center lg:hidden">
-              <div className="from-tertiary-600 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br to-indigo-600">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-tertiary-600 to-indigo-600">
                 <svg
                   className="h-6 w-6 text-white"
                   fill="none"

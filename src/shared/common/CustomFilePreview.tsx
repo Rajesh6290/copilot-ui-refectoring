@@ -544,7 +544,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
                 </svg>
               )}
             </div>
-            <div className="absolute -top-2 -right-2 h-5 w-5 animate-pulse rounded-full bg-blue-500 shadow-lg"></div>
+            <div className="absolute -right-2 -top-2 h-5 w-5 animate-pulse rounded-full bg-blue-500 shadow-lg"></div>
           </div>
         </div>
 
@@ -586,7 +586,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
           {retryCount < MAX_RETRIES && (
             <button
               onClick={() => processFile(fileUrl)}
-              className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
+              className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Retry
             </button>
@@ -594,7 +594,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
           <button
             onClick={downloadFile}
             disabled={isDownloading}
-            className={`relative inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none ${
+            className={`relative inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
               isDownloading ? "cursor-not-allowed opacity-75" : ""
             }`}
           >
@@ -602,7 +602,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
               className={`mr-2 h-4 w-4 ${isDownloading ? "opacity-30" : ""}`}
             />
             {isDownloading && (
-              <div className="absolute top-1/2 left-3 -translate-y-1/2">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2">
                 <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
               </div>
             )}
@@ -610,7 +610,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
           </button>
           <button
             onClick={() => window.open(fileUrl, "_blank")}
-            className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
+            className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700"
           >
             Open in New Tab
           </button>
@@ -658,13 +658,13 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
               <thead className="sticky top-0 z-10">
                 <tr>
                   {/* Row number column header */}
-                  <th className="sticky left-0 z-20 w-16 border-r border-b-2 border-gray-300 bg-gray-100 px-3 py-3 text-center text-xs font-semibold text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                  <th className="sticky left-0 z-20 w-16 border-b-2 border-r border-gray-300 bg-gray-100 px-3 py-3 text-center text-xs font-semibold text-gray-600 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400">
                     #
                   </th>
                   {csvData.headers.map((header, index) => (
                     <th
                       key={index}
-                      className="max-w-64 min-w-32 border-r border-b-2 border-gray-300 bg-gray-100 px-4 py-3 text-left dark:border-gray-600 dark:bg-gray-800"
+                      className="min-w-32 max-w-64 border-b-2 border-r border-gray-300 bg-gray-100 px-4 py-3 text-left dark:border-gray-600 dark:bg-gray-800"
                     >
                       <div className="flex flex-col space-y-1">
                         <span className="text-xs font-medium text-gray-400 dark:text-gray-500">
@@ -690,13 +690,13 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
                     className="group hover:bg-blue-50 dark:hover:bg-gray-800/50"
                   >
                     {/* Row number */}
-                    <td className="sticky left-0 z-10 w-16 border-r border-b border-gray-200 bg-gray-50 px-3 py-2 text-center text-xs font-medium text-gray-500 group-hover:bg-blue-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gray-700">
+                    <td className="sticky left-0 z-10 w-16 border-b border-r border-gray-200 bg-gray-50 px-3 py-2 text-center text-xs font-medium text-gray-500 group-hover:bg-blue-100 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:group-hover:bg-gray-700">
                       {rowIndex + 1}
                     </td>
                     {row.map((cell, cellIndex) => (
                       <td
                         key={cellIndex}
-                        className="max-w-64 min-w-32 border-r border-b border-gray-200 px-4 py-2 dark:border-gray-700"
+                        className="min-w-32 max-w-64 border-b border-r border-gray-200 px-4 py-2 dark:border-gray-700"
                       >
                         <div
                           className="csv-cell min-h-6 w-full cursor-text truncate rounded px-2 py-1 text-gray-900 transition-colors dark:text-gray-100"
@@ -741,7 +741,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
               <button
                 onClick={downloadFile}
                 disabled={isDownloading}
-                className={`relative inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:bg-blue-500 dark:hover:bg-blue-600 ${
+                className={`relative inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-500 dark:hover:bg-blue-600 ${
                   isDownloading ? "cursor-not-allowed opacity-75" : ""
                 }`}
               >
@@ -749,7 +749,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
                   className={`mr-2 h-4 w-4 ${isDownloading ? "opacity-30" : ""}`}
                 />
                 {isDownloading && (
-                  <div className="absolute top-1/2 left-3 -translate-y-1/2">
+                  <div className="absolute left-3 top-1/2 -translate-y-1/2">
                     <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white"></div>
                   </div>
                 )}
@@ -768,7 +768,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
         <div className="flex items-center space-x-3">
           <button
             onClick={onClose}
-            className="rounded-lg bg-gray-100 p-2.5 text-gray-600 transition-all hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+            className="rounded-lg bg-gray-100 p-2.5 text-gray-600 transition-all hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
             title="Close (Esc)"
           >
             <MoveLeft className="h-5 w-5" />
@@ -776,7 +776,7 @@ const CustomFilePreview: React.FC<CustomFilePreviewProps> = ({
           <button
             onClick={downloadFile}
             disabled={isDownloading}
-            className={`relative rounded-lg bg-gray-100 p-2.5 text-gray-600 transition-all hover:bg-gray-200 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 ${
+            className={`relative rounded-lg bg-gray-100 p-2.5 text-gray-600 transition-all hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600 ${
               isDownloading ? "cursor-not-allowed opacity-75" : ""
             }`}
             title="Download File"

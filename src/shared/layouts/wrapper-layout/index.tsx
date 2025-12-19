@@ -16,8 +16,7 @@ const IPRefresher = lazy(() => import("@/shared/hooks/IPRefresher"));
 const WrapperLayouts = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const [initialAuthCheck, setInitialAuthCheck] = useState(false);
-  const { getUser, isUserLoading } = usePermission();
+  const { getUser } = usePermission();
   const pathname = usePathname();
   useEffect(() => {
     setMounted(true);
@@ -25,30 +24,24 @@ const WrapperLayouts = ({ children }: { children: React.ReactNode }) => {
 
   const router = useRouter();
   useEffect(() => {
-    if (mounted && !initialAuthCheck) {
+    if (mounted) {
+      // For auth pages, don't fetch user data
       if (pathname?.includes("/auth/")) {
         setLoading(false);
-        setInitialAuthCheck(true);
         return;
       }
 
+      // For protected pages, get user data once
       const fetchData = async () => {
         try {
           await getUser();
-        } catch {
-          // Handle error silently on initial load
         } finally {
           setLoading(false);
-          setInitialAuthCheck(true);
         }
       };
       fetchData();
-    } else if (mounted && initialAuthCheck) {
-      if (!pathname?.includes("/auth/")) {
-        setLoading(isUserLoading);
-      }
     }
-  }, [mounted, initialAuthCheck, pathname, isUserLoading]);
+  }, [mounted, pathname]); // Simplified dependencies
 
   const getTheme = () => {
     if (typeof window !== "undefined") {
@@ -84,14 +77,14 @@ const WrapperLayouts = ({ children }: { children: React.ReactNode }) => {
 
       <ThemeProvider>
         <AppProvider>
-          <div className="dark:bg-darkMainBackground dark:text-bodydark h-dvh">
+          <div className="h-dvh dark:bg-darkMainBackground dark:text-bodydark">
             {!mounted ? (
               <div className="flex size-full items-center justify-center">
                 <Loader />
               </div>
             ) : (
               <>
-                <div className="fixed top-0 left-0 z-9999">
+                <div className="fixed left-0 top-0 z-9999">
                   <NextTopLoader color="#6160b0" />
                   <Toaster
                     position="top-center"
@@ -124,7 +117,7 @@ const WrapperLayouts = ({ children }: { children: React.ReactNode }) => {
 export default WrapperLayouts;
 function TailwindIndicator() {
   return (
-    <div className="fixed bottom-1 left-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 font-mono text-xs text-white">
+    <div className="font-mono fixed bottom-1 left-1 z-50 flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 p-3 text-xs text-white">
       <div className="block sm:hidden">xs</div>
       <div className="hidden sm:block md:hidden">sm</div>
       <div className="hidden md:block lg:hidden">md</div>

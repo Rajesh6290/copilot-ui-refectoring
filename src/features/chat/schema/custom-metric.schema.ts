@@ -1,6 +1,10 @@
 import * as Yup from "yup";
-const CustomMetricSchema = ( { hasExistingApplication } :{hasExistingApplication: boolean}) => {
-    return   Yup.object({
+const CustomMetricSchema = ({
+  hasExistingApplication
+}: {
+  hasExistingApplication: boolean;
+}) => {
+  return Yup.object({
     application_name: hasExistingApplication
       ? Yup.string()
       : Yup.string()
@@ -12,7 +16,7 @@ const CustomMetricSchema = ( { hasExistingApplication } :{hasExistingApplication
       : Yup.string(),
     use_case: Yup.string()
       .required("Use case is required")
-      .notOneOf([""], "Please select a use case"),
+      .notOneOf([""], "Please select a use case")
   });
-}
+};
 export default CustomMetricSchema;

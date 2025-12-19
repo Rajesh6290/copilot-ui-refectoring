@@ -1,5 +1,5 @@
 "use client";
-import { useAuth, useClerk, useUser } from "@clerk/nextjs";
+import { useClerk, useUser } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { useRouter } from "nextjs-toploader/app";
 import { ComponentType, useEffect, useMemo, useRef, useState } from "react";
@@ -25,9 +25,7 @@ const UseProtectedRoutes = <P extends object>(
     const { user, isLoaded } = useUser();
     const { push } = useRouter();
     const { signOut } = useClerk();
-    const { getToken } = useAuth();
     const { isUserLoading, menuItems } = useMenuItems();
-    const [tokenLoading, setTokenLoading] = useState<boolean>(true);
     const { user: loggedUser, isUserLoading: loggedUserLoading } =
       usePermission();
 
@@ -66,22 +64,6 @@ const UseProtectedRoutes = <P extends object>(
       }
       return alwaysAllowedRoutes.some((pattern) => pattern.test(asPath));
     }, [asPath, alwaysAllowedRoutes]);
-
-    useEffect(() => {
-      // Fetch and store token for authenticated users
-      const fetchToken = async () => {
-        if (user?.id) {
-          setTokenLoading(true);
-          const token = await getToken({ template: "token-for-testing" });
-          if (token) {
-            localStorage.setItem("ACCESS_TOKEN", token);
-          }
-          setTokenLoading(false);
-        }
-      };
-
-      fetchToken();
-    }, [user, getToken]);
 
     // Clean up any hash URLs that might have been created by routing conflicts
     useEffect(() => {
@@ -331,10 +313,6 @@ const UseProtectedRoutes = <P extends object>(
       isPublicRoute,
       isAlwaysAllowed
     ]);
-
-    if (tokenLoading) {
-      return <Loader />;
-    }
 
     // Show loader during loading states
     if (

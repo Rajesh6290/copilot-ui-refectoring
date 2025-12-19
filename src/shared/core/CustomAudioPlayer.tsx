@@ -225,8 +225,8 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
   }, [isMuted, isBuffering]);
 
   return (
-    <div className="shadow-1 drop-shadow-1 flex h-fit w-full flex-col rounded-lg bg-white py-2 md:flex-row md:items-center md:gap-2 md:py-0 dark:bg-gray-800">
-      <div className="flex items-center justify-center gap-1 border-r border-gray-200 py-3 md:w-[30%] lg:w-[25%] xl:w-[20%] 2xl:w-[14%] dark:border-gray-700">
+    <div className="shadow-1 flex h-fit w-full flex-col rounded-lg bg-white py-2 drop-shadow-1 dark:bg-gray-800 md:flex-row md:items-center md:gap-2 md:py-0">
+      <div className="flex items-center justify-center gap-1 border-r border-gray-200 py-3 dark:border-gray-700 md:w-[30%] lg:w-[25%] xl:w-[20%] 2xl:w-[14%]">
         <div
           role="button"
           tabIndex={0}
@@ -242,7 +242,7 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
           }`}
         >
           <HiMiniArrowUturnLeft className="text-2xl text-gray-500 transition-colors group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-100" />
-          <span className="absolute top-2.5 left-0 text-[0.6rem] font-semibold tracking-wider text-gray-600 dark:text-gray-400">
+          <span className="absolute left-0 top-2.5 text-[0.6rem] font-semibold tracking-wider text-gray-600 dark:text-gray-400">
             10
           </span>
         </div>
@@ -252,7 +252,7 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
           className="dark:bg-primary-dark relative mx-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-900 text-white transition-colors disabled:bg-gray-300"
         >
           {isLoading || isBuffering ? (
-            <CircularProgress size={20} className="text-primary text-xl" />
+            <CircularProgress size={20} className="text-xl text-primary" />
           ) : isPlaying ? (
             <FaPause className="text-xl" />
           ) : (
@@ -274,7 +274,7 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
           }`}
         >
           <HiMiniArrowUturnRight className="text-2xl text-gray-500 transition-colors group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-100" />
-          <span className="absolute top-2.5 right-0 text-[0.6rem] font-semibold tracking-wider text-gray-600 dark:text-gray-400">
+          <span className="absolute right-0 top-2.5 text-[0.6rem] font-semibold tracking-wider text-gray-600 dark:text-gray-400">
             10
           </span>
         </div>
@@ -298,7 +298,7 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
               <div className="rounded bg-gray-800 px-2 py-1 text-xs text-white shadow-lg dark:bg-gray-700">
                 {formatTime(hoverTime)}
               </div>
-              <div className="-mt-1.5 -mb-2 h-2 w-2 rotate-45 bg-gray-800 dark:bg-gray-700" />
+              <div className="-mb-2 -mt-1.5 h-2 w-2 rotate-45 bg-gray-800 dark:bg-gray-700" />
             </div>
           )}
 
@@ -311,13 +311,13 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
           >
             {/* Buffered Progress */}
             <div
-              className="absolute top-0 left-0 h-full rounded-full bg-gray-300 transition-all duration-300 ease-in-out dark:bg-gray-600"
+              className="absolute left-0 top-0 h-full rounded-full bg-gray-300 transition-all duration-300 ease-in-out dark:bg-gray-600"
               style={{ width: `${getBufferedWidth}%` }}
             />
 
             {/* Played Progress */}
             <div
-              className="dark:bg-primary-dark absolute top-0 left-0 h-full rounded-full bg-[#3c50e0] transition-all duration-300 ease-in-out"
+              className="dark:bg-primary-dark absolute left-0 top-0 h-full rounded-full bg-[#3c50e0] transition-all duration-300 ease-in-out"
               style={{
                 width: `${progressPercentage}%`,
                 opacity: isBuffering ? 0.5 : 1
@@ -327,7 +327,7 @@ const CustomAudioPlayer: React.FC<AudioPlayerProps> = ({
             {/* Loading Animation */}
             {(isLoading || isBuffering) && (
               <div
-                className="animate-progress-loading absolute top-0 left-0 h-full rounded-full bg-gradient-to-r from-transparent via-white to-transparent dark:via-gray-500"
+                className="animate-progress-loading absolute left-0 top-0 h-full rounded-full bg-gradient-to-r from-transparent via-white to-transparent dark:via-gray-500"
                 style={{ width: `${getBufferedWidth}%` }}
               />
             )}

@@ -32,10 +32,10 @@ const SidebarDropdown = ({
             <li key={index} className={isActive ? "active" : ""}>
               <Link
                 href={route}
-                className={`group dark:text-bodydark2 relative flex items-center gap-2.5 rounded-md px-4 py-1.5 font-medium text-gray-900 duration-300 ease-in-out ${
+                className={`group relative flex items-center gap-2.5 rounded-md px-4 py-1.5 font-medium text-gray-900 duration-300 ease-in-out dark:text-bodydark2 ${
                   isActive
-                    ? "dark:bg-darkMainBackground bg-neutral-200 text-gray-900 dark:text-white"
-                    : "dark:hover:bg-darkMainBackground hover:bg-neutral-100"
+                    ? "bg-neutral-200 text-gray-900 dark:bg-darkMainBackground dark:text-white"
+                    : "hover:bg-neutral-100 dark:hover:bg-darkMainBackground"
                 }`}
               >
                 {label}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 const Verification = ({ currentStep }: { currentStep: number }) => (
-  <div className="flex min-h-dvh flex-col items-center justify-center bg-gray-50 px-4 py-4 sm:px-5 dark:bg-gray-900">
+  <div className="flex min-h-dvh flex-col items-center justify-center bg-gray-50 px-4 py-4 dark:bg-gray-900 sm:px-5">
     <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-500 dark:bg-gray-800 dark:shadow-blue-900/10">
       <div className="relative z-10 p-6 sm:p-8 md:p-10">
         <div className="absolute inset-0 bg-white dark:bg-gray-800"></div>
@@ -9,10 +9,10 @@ const Verification = ({ currentStep }: { currentStep: number }) => (
           {/* Logo Section */}
           <div className="my-4 flex w-full items-center justify-center sm:my-6">
             <div className="relative">
-              <div className="animate-ping-slow absolute inset-0 -m-3 rounded-full border-2 border-blue-300 opacity-40 sm:-m-4 dark:border-blue-500"></div>
-              <div className="animate-ping-slow animation-delay-1000 absolute inset-0 -m-6 rounded-full border-2 border-blue-200 opacity-30 sm:-m-8 dark:border-blue-600"></div>
+              <div className="animate-ping-slow absolute inset-0 -m-3 rounded-full border-2 border-blue-300 opacity-40 dark:border-blue-500 sm:-m-4"></div>
+              <div className="animate-ping-slow animation-delay-1000 absolute inset-0 -m-6 rounded-full border-2 border-blue-200 opacity-30 dark:border-blue-600 sm:-m-8"></div>
 
-              <div className="relative h-20 w-20 overflow-hidden rounded-full bg-white p-4 shadow-md transition-all duration-300 hover:shadow-blue-100 sm:h-24 sm:w-24 sm:p-5 dark:bg-gray-800 dark:hover:shadow-blue-900/20">
+              <div className="relative h-20 w-20 overflow-hidden rounded-full bg-white p-4 shadow-md transition-all duration-300 hover:shadow-blue-100 dark:bg-gray-800 dark:hover:shadow-blue-900/20 sm:h-24 sm:w-24 sm:p-5">
                 <div className="animate-pulse-slow absolute inset-0 rounded-full bg-gradient-to-r from-blue-50 via-blue-100 to-blue-50 opacity-50 dark:from-blue-900/20 dark:via-blue-800/20 dark:to-blue-900/20"></div>
                 <Image
                   src="/access-control.svg"
@@ -27,16 +27,16 @@ const Verification = ({ currentStep }: { currentStep: number }) => (
           </div>
 
           {/* Title */}
-          <h1 className="mb-2 bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-center text-2xl font-extrabold text-transparent transition-all duration-300 hover:from-blue-600 hover:to-blue-500 sm:mb-3 sm:text-3xl dark:from-blue-400 dark:to-blue-300">
+          <h1 className="mb-2 bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-center text-2xl font-extrabold text-transparent transition-all duration-300 hover:from-blue-600 hover:to-blue-500 dark:from-blue-400 dark:to-blue-300 sm:mb-3 sm:text-3xl">
             Verifying Access
           </h1>
 
           {/* Status message */}
-          <div className="mb-5 overflow-hidden rounded-xl bg-blue-50 p-3 shadow-sm sm:mb-6 sm:p-4 dark:bg-blue-900/20">
+          <div className="mb-5 overflow-hidden rounded-xl bg-blue-50 p-3 shadow-sm dark:bg-blue-900/20 sm:mb-6 sm:p-4">
             <p className="mx-auto text-blue-700 dark:text-blue-300">
               <span className="flex items-center gap-2">
                 <svg
-                  className="h-4 w-4 animate-spin text-blue-600 sm:h-5 sm:w-5 dark:text-blue-400"
+                  className="h-4 w-4 animate-spin text-blue-600 dark:text-blue-400 sm:h-5 sm:w-5"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -59,7 +59,7 @@ const Verification = ({ currentStep }: { currentStep: number }) => (
                   Verifying your credentials...
                 </span>
               </span>
-              <span className="mt-1 block text-xs text-blue-600 sm:text-sm dark:text-blue-300">
+              <span className="mt-1 block text-xs text-blue-600 dark:text-blue-300 sm:text-sm">
                 {"Setting up secure access to your account's resources."}
               </span>
             </p>
@@ -162,7 +162,7 @@ const Verification = ({ currentStep }: { currentStep: number }) => (
           </div>
 
           <div className="mt-5 flex justify-center space-x-2 sm:mt-6">
-            <div className="flex animate-pulse items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700 sm:px-3 sm:py-1.5 dark:bg-blue-900/20 dark:text-blue-400">
+            <div className="flex animate-pulse items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-medium text-blue-700 dark:bg-blue-900/20 dark:text-blue-400 sm:px-3 sm:py-1.5">
               <svg
                 className="mr-1 h-3.5 w-3.5 sm:h-4 sm:w-4"
                 viewBox="0 0 24 24"
@@ -180,14 +180,14 @@ const Verification = ({ currentStep }: { currentStep: number }) => (
             </div>
           </div>
 
-          <p className="mt-3 text-center text-xs text-gray-500 sm:mt-4 dark:text-gray-400">
+          <p className="mt-3 text-center text-xs text-gray-500 dark:text-gray-400 sm:mt-4">
             Please wait while we secure your session
           </p>
         </div>
       </div>
     </div>
 
-    <div className="absolute right-0 bottom-0 left-0 h-12 bg-gradient-to-t from-blue-50/20 to-transparent sm:h-16 dark:from-blue-900/10"></div>
+    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-blue-50/20 to-transparent dark:from-blue-900/10 sm:h-16"></div>
   </div>
 );
 export default Verification;

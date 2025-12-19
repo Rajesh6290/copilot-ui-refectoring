@@ -10,7 +10,7 @@ const Navbar = (props: {
   setFullWidth: () => void;
 }) => {
   return (
-    <header className="dark:bg-darkSidebarBackground sticky top-0 z-999 flex w-full bg-white dark:border-b dark:border-[#272727] dark:drop-shadow-none">
+    <header className="sticky top-0 z-999 flex w-full bg-white dark:border-b dark:border-[#272727] dark:bg-darkSidebarBackground dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-2 shadow md:px-4">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -28,7 +28,7 @@ const Navbar = (props: {
           >
             <div className="rounded-lg border border-gray-500 p-2 dark:border-neutral-700">
               <RiMenu3Line
-                className={`text-pr text-primary dark:text-tertiary text-lg ${!props?.sidebarOpen ? "-rotate-180" : ""} `}
+                className={`text-pr text-lg text-primary dark:text-tertiary ${!props?.sidebarOpen ? "-rotate-180" : ""} `}
               />
             </div>
           </div>
@@ -48,7 +48,7 @@ const Navbar = (props: {
         >
           <div className="rounded-lg border border-gray-500 p-2 dark:border-neutral-700">
             <RiMenu3Line
-              className={`text-pr text-primary dark:text-tertiary text-lg ${props?.fullWidth ? "-rotate-180" : ""} `}
+              className={`text-pr text-lg text-primary dark:text-tertiary ${props?.fullWidth ? "-rotate-180" : ""} `}
             />
           </div>
         </div>

@@ -18,7 +18,7 @@ const LoadingSpinner = ({
       {[0, 1, 2].map((index) => (
         <motion.div
           key={index}
-          className={`${currentSize.dot} bg-tertiary-600 dark:bg-tertiary-400 rounded-full`}
+          className={`${currentSize.dot} rounded-full bg-tertiary-600 dark:bg-tertiary-400`}
           animate={{
             scale: [1, 1.4, 1],
             opacity: [0.3, 1, 0.3]

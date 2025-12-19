@@ -587,7 +587,7 @@ const HelpArea = ({
             return (
               <div
                 key={i}
-                className="dark:bg-darkSidebarBackground my-2 overflow-x-auto rounded-md bg-gray-50 p-3 font-mono text-xs text-gray-800 dark:text-white"
+                className="font-mono my-2 overflow-x-auto rounded-md bg-gray-50 p-3 text-xs text-gray-800 dark:bg-darkSidebarBackground dark:text-white"
               >
                 <pre
                   className="whitespace-pre"
@@ -605,19 +605,19 @@ const HelpArea = ({
     return (
       <div
         ref={chatContainerRef}
-        className="dark:bg-darkSidebarBackground relative flex size-full flex-col overflow-hidden rounded-2xl shadow-xl"
+        className="relative flex size-full flex-col overflow-hidden rounded-2xl shadow-xl dark:bg-darkSidebarBackground"
       >
-        <div className="bg-tertiary-600 flex items-center justify-between px-4 py-3">
+        <div className="flex items-center justify-between bg-tertiary-600 px-4 py-3">
           <div className="flex items-center gap-2">
-            <div className="bg-tertiary-500 flex h-10 w-10 items-center justify-center rounded-full shadow-md">
+            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-tertiary-500 shadow-md">
               <RiRobot2Line size={20} className="text-white" />
             </div>
             <div>
               <h2 className="text-base font-semibold text-white">
                 AI Help Assistant
               </h2>
-              <p className="text-tertiary-100 flex flex-col gap-1 text-xs">
-                <span className="bg-tertiary-500 inline-flex items-center gap-1 rounded-lg px-1.5 py-0.5 text-[10px] font-medium text-white">
+              <p className="flex flex-col gap-1 text-xs text-tertiary-100">
+                <span className="inline-flex items-center gap-1 rounded-lg bg-tertiary-500 px-1.5 py-0.5 text-[10px] font-medium text-white">
                   <Sparkles size={10} className="text-tertiary-200" />
                   AI Powered
                 </span>
@@ -674,19 +674,19 @@ const HelpArea = ({
   return (
     <div
       ref={chatContainerRef}
-      className="dark:bg-darkSidebarBackground relative flex size-full flex-col overflow-hidden rounded-2xl shadow-xl"
+      className="relative flex size-full flex-col overflow-hidden rounded-2xl shadow-xl dark:bg-darkSidebarBackground"
     >
-      <div className="bg-tertiary-600 flex items-center justify-between px-4 py-3">
+      <div className="flex items-center justify-between bg-tertiary-600 px-4 py-3">
         <div className="flex items-center gap-2">
-          <div className="bg-tertiary-500 flex h-10 w-10 items-center justify-center rounded-full shadow-md">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-tertiary-500 shadow-md">
             <RiRobot2Line size={20} className="text-white" />
           </div>
           <div>
             <h2 className="text-base font-semibold text-white">
               AI Help Assistant
             </h2>
-            <p className="text-tertiary-100 flex flex-col gap-1 text-xs">
-              <span className="bg-tertiary-500 inline-flex items-center gap-1 rounded-lg px-1.5 py-0.5 text-[10px] font-medium text-white">
+            <p className="flex flex-col gap-1 text-xs text-tertiary-100">
+              <span className="inline-flex items-center gap-1 rounded-lg bg-tertiary-500 px-1.5 py-0.5 text-[10px] font-medium text-white">
                 <Sparkles size={10} className="text-tertiary-200" />
                 AI Powered
               </span>
@@ -773,18 +773,18 @@ const HelpArea = ({
                       ></div>
                     </div>
                   ) : message.type === "system" ? (
-                    <div className="dark:bg-darkMainBackground mb-2 max-w-[90%] rounded-full bg-gray-100 px-4 py-2 text-center text-sm text-gray-700 dark:text-gray-200">
+                    <div className="mb-2 max-w-[90%] rounded-full bg-gray-100 px-4 py-2 text-center text-sm text-gray-700 dark:bg-darkMainBackground dark:text-gray-200">
                       {message.content}
                     </div>
                   ) : (
                     <div
                       className={`max-w-full ${
                         message.type === "user"
-                          ? "from-tertiary-500 to-tertiary-600 rounded-tl-xl rounded-tr-xl rounded-bl-xl bg-gradient-to-tr text-white shadow-sm"
-                          : "dark:bg-darkMainBackground rounded-tl-xl rounded-tr-xl rounded-br-xl border border-gray-200 bg-white text-gray-800 shadow-sm dark:border-neutral-700 dark:text-gray-200"
+                          ? "rounded-bl-xl rounded-tl-xl rounded-tr-xl bg-gradient-to-tr from-tertiary-500 to-tertiary-600 text-white shadow-sm"
+                          : "rounded-br-xl rounded-tl-xl rounded-tr-xl border border-gray-200 bg-white text-gray-800 shadow-sm dark:border-neutral-700 dark:bg-darkMainBackground dark:text-gray-200"
                       } relative px-4 py-3`}
                     >
-                      <div className="font-satoshi text-sm leading-relaxed font-medium">
+                      <div className="font-satoshi text-sm font-medium leading-relaxed">
                         {renderMessageContent(message.content || "")}
                         {message.error && (
                           <span className="mt-2 block text-xs font-medium text-red-500">
@@ -810,7 +810,7 @@ const HelpArea = ({
                               onClick={() =>
                                 handleQuickAction(action.id, message.content)
                               }
-                              className="dark:bg-darkSidebarBackground flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 text-xs text-gray-600 shadow-sm hover:bg-gray-50 dark:border-neutral-700 dark:text-white"
+                              className="flex items-center gap-1 rounded-full border border-gray-200 bg-white px-2 py-1 text-xs text-gray-600 shadow-sm hover:bg-gray-50 dark:border-neutral-700 dark:bg-darkSidebarBackground dark:text-white"
                             >
                               <span className="text-indigo-500">
                                 {action.icon}
@@ -867,8 +867,8 @@ const HelpArea = ({
         </div>
       </div>
 
-      <div className="dark:bg-darkSidebarBackground absolute right-0 bottom-0 left-0 border-t border-gray-100 bg-white p-3 dark:border-neutral-800">
-        <div className="dark:bg-darkMainBackground flex items-center rounded-full border border-gray-200 bg-gray-50 px-3 py-1 shadow-sm focus-within:border-indigo-300 focus-within:ring-2 focus-within:ring-indigo-100 dark:border-neutral-700">
+      <div className="absolute bottom-0 left-0 right-0 border-t border-gray-100 bg-white p-3 dark:border-neutral-800 dark:bg-darkSidebarBackground">
+        <div className="flex items-center rounded-full border border-gray-200 bg-gray-50 px-3 py-1 shadow-sm focus-within:border-indigo-300 focus-within:ring-2 focus-within:ring-indigo-100 dark:border-neutral-700 dark:bg-darkMainBackground">
           <input
             ref={inputRef}
             type="text"
@@ -890,12 +890,12 @@ const HelpArea = ({
                 <div className="relative">
                   <button
                     onClick={stopStreaming}
-                    className="bg-tertiary-100 text-tertiary-800 hover:bg-tertiary-200 dark:bg-tertiary-700/30 dark:text-tertiary-200 dark:hover:bg-tertiary-700/50 flex items-center justify-center rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
+                    className="flex items-center justify-center rounded-full bg-tertiary-100 px-4 py-1.5 text-sm font-medium text-tertiary-800 transition-colors hover:bg-tertiary-200 dark:bg-tertiary-700/30 dark:text-tertiary-200 dark:hover:bg-tertiary-700/50"
                   >
                     <div className="relative mr-1 flex items-center justify-center">
                       <FaStop className="mr-3 size-3" />
                       <div className="absolute -top-1.5 right-1.5">
-                        <div className="border-tertiary size-6 animate-spin rounded-full border-[3px] border-t-transparent"></div>
+                        <div className="size-6 animate-spin rounded-full border-[3px] border-tertiary border-t-transparent"></div>
                       </div>
                     </div>
                     <span className="text-sm font-semibold">Stop</span>

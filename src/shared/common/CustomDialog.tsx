@@ -62,7 +62,7 @@ const CustomDialog: React.FC<CommonDialogProps> = ({
       }}
     >
       {/* Header (Non-Scrolling) */}
-      <DialogTitle className="dark:bg-darkMainBackground m-0 flex-shrink-0 border-b border-gray-200 bg-white p-2 dark:border-neutral-700">
+      <DialogTitle className="m-0 flex-shrink-0 border-b border-gray-200 bg-white p-2 dark:border-neutral-700 dark:bg-darkMainBackground">
         <div className="flex items-center justify-between">
           <h2 className="font-[family-name:var(--font-geist-mono)] text-xl font-semibold text-gray-900 dark:text-white">
             {title}
@@ -72,7 +72,7 @@ const CustomDialog: React.FC<CommonDialogProps> = ({
 
       {/* Scrollable Content */}
       <DialogContent
-        className="dark:bg-darkMainBackground bg-white px-6 py-4"
+        className="bg-white px-6 py-4 dark:bg-darkMainBackground"
         style={{
           overflowY: "auto", // This is crucial
           flex: 1 // Take up available space and allow scrolling
@@ -82,7 +82,7 @@ const CustomDialog: React.FC<CommonDialogProps> = ({
       </DialogContent>
 
       {/* Footer (Non-Scrolling) */}
-      <DialogActions className="dark:bg-darkMainBackground flex flex-shrink-0 justify-end space-x-3 border-t border-gray-200 bg-white px-6 py-4 dark:border-neutral-700">
+      <DialogActions className="flex flex-shrink-0 justify-end space-x-3 border-t border-gray-200 bg-white px-6 py-4 dark:border-neutral-700 dark:bg-darkMainBackground">
         <button
           type="button"
           onClick={onClose}

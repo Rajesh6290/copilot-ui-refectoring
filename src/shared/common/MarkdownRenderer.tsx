@@ -48,21 +48,21 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-tertiary-500 font-semibold underline"
+                className="font-semibold text-tertiary-500 underline"
               >
                 {children}
               </a>
             ) : (
               <Link
                 href={href || "#"}
-                className="text-tertiary-500 font-semibold underline"
+                className="font-semibold text-tertiary-500 underline"
               >
                 {children}
               </Link>
             );
           },
           blockquote: ({ children }) => (
-            <blockquote className="border-tertiary-500 border-l-4 pl-4 text-gray-500 italic">
+            <blockquote className="border-l-4 border-tertiary-500 pl-4 italic text-gray-500">
               {children}
             </blockquote>
           ),

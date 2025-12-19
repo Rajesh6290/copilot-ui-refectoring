@@ -63,7 +63,7 @@ const AttachedCollection = ({
           placeholder="Search collections..."
           value={collectionSearch}
           onChange={(e) => setCollectionSearch(e.target.value)}
-          className="mb-4 w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm placeholder-gray-400 transition-all duration-200 focus:ring-2 focus:ring-blue-300 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-300"
+          className="mb-4 w-full rounded-lg border border-gray-200 bg-gray-50 p-3 text-sm placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-300"
         />
         <ul className="max-h-60 space-y-2 overflow-y-auto">
           {filteredCollections?.length > 0 ? (

@@ -47,13 +47,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
   return (
     <>
       <aside
-        className={`dark:bg-darkSidebarBackground hidden h-full flex-col border-r border-neutral-100 bg-white transition-all duration-300 ease-in-out lg:flex dark:border-[#272727] ${
+        className={`hidden h-full flex-col border-r border-neutral-100 bg-white transition-all duration-300 ease-in-out dark:border-[#272727] dark:bg-darkSidebarBackground lg:flex ${
           fullWidth
             ? "w-0 -translate-x-full opacity-0"
             : "w-72.5 translate-x-0 opacity-100"
         }`}
       >
-        <div className="dark:bg-darkSidebarBackground z-999999 bg-white px-6 py-2">
+        <div className="z-999999 bg-white px-6 py-2 dark:bg-darkSidebarBackground">
           {user?.company_logo_url &&
           user?.company_logo_url?.length > 0 &&
           user?.company_logo_url !== "-1" ? (
@@ -103,7 +103,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
                 ) =>
                   group?.permission?.is_shown ? (
                     <div key={groupIndex}>
-                      <h3 className="text-bodydark2 mb-2 ml-4 text-sm font-semibold">
+                      <h3 className="mb-2 ml-4 text-sm font-semibold text-bodydark2">
                         {group?.metadata?.label}
                       </h3>
                       <ul className="mb-2 flex flex-col gap-1">
@@ -133,7 +133,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
       </aside>
 
       <div
-        className={`fixed inset-0 z-998 bg-black transition-opacity duration-300 lg:hidden ${
+        className={`z-998 fixed inset-0 bg-black transition-opacity duration-300 lg:hidden ${
           sidebarOpen ? "opacity-50" : "pointer-events-none opacity-0"
         }`}
         onClick={() => setSidebarOpen(false)}
@@ -149,11 +149,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
 
       <ClickOutside onClick={() => setSidebarOpen(false)}>
         <aside
-          className={`dark:bg-darkSidebarBackground fixed top-0 left-0 z-999 flex h-full w-72.5 flex-col overflow-y-hidden border-r border-neutral-100 bg-white transition-transform duration-300 ease-in-out lg:hidden dark:border-[#272727] ${
+          className={`fixed left-0 top-0 z-999 flex h-full w-72.5 flex-col overflow-y-hidden border-r border-neutral-100 bg-white transition-transform duration-300 ease-in-out dark:border-[#272727] dark:bg-darkSidebarBackground lg:hidden ${
             sidebarOpen ? "translate-x-0" : "-translate-x-full"
           }`}
         >
-          <div className="dark:bg-darkSidebarBackground z-50 mt-16 bg-white px-6 py-3">
+          <div className="z-50 mt-16 bg-white px-6 py-3 dark:bg-darkSidebarBackground">
             {user?.company_logo_url &&
             user?.company_logo_url?.length > 0 &&
             user?.company_logo_url !== "-1" ? (
@@ -194,7 +194,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, fullWidth }: SidebarProps) => {
                 ) =>
                   group?.permission?.is_shown ? (
                     <div key={groupIndex}>
-                      <h3 className="text-bodydark2 mb-4 ml-4 font-[family-name:var(--font-geist-mono)] text-sm font-semibold">
+                      <h3 className="mb-4 ml-4 font-[family-name:var(--font-geist-mono)] text-sm font-semibold text-bodydark2">
                         {group?.metadata?.label}
                       </h3>
                       <ul className="mb-6 flex flex-col gap-1.5">
