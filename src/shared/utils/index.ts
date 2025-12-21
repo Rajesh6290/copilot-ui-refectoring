@@ -221,7 +221,7 @@ export interface DateTimeSettings {
 
 export const formatDateTime = (
   dateInput: string | Date | number | null | undefined,
-  settings: DateTimeSettings
+  settings?: DateTimeSettings
 ): string => {
   if (dateInput === null || dateInput === undefined) {
     return "";
