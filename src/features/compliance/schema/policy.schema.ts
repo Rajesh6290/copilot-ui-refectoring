@@ -12,7 +12,7 @@ const validateFile = (file: File): boolean => {
   return supportedFormats.includes(extension);
 };
 
-const NewPolicySchema =  Yup.object({
+const NewPolicySchema = Yup.object({
   name: Yup.string()
     .required("Policy name is required")
     .min(3, "Policy name must be at least 3 characters")
@@ -25,10 +25,10 @@ const NewPolicySchema =  Yup.object({
       Yup.mixed<File>().test(
         "fileFormat",
         "Only PDF files under 10MB are allowed",
-        (value) => value && validateFile(value),
-      ),
+        (value) => value && validateFile(value)
+      )
     )
     .min(1, "At least one policy file is required")
-    .required("At least one policy file is required"),
-})
+    .required("At least one policy file is required")
+});
 export { NewPolicySchema };

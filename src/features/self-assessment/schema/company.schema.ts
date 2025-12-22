@@ -28,7 +28,7 @@ const CompanyInfoSchema = Yup.object().shape({
       (file) =>
         typeof file === "string" ||
         !file ||
-        (file instanceof File && file.size <= FILE_SIZE),
+        (file instanceof File && file.size <= FILE_SIZE)
     )
     .test(
       "fileFormat",
@@ -36,7 +36,7 @@ const CompanyInfoSchema = Yup.object().shape({
       (file) =>
         typeof file === "string" ||
         !file ||
-        (file instanceof File && SUPPORTED_FORMATS.includes(file.type)),
-    ),
+        (file instanceof File && SUPPORTED_FORMATS.includes(file.type))
+    )
 });
 export default CompanyInfoSchema;

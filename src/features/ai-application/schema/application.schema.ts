@@ -8,7 +8,7 @@ const NewApplicationValidationSchema = Yup.object({
     .required("Version is required")
     .matches(
       /^\d+\.\d+\.\d+$/,
-      "Version must be in format X.Y.Z (e.g., 1.0.0)",
+      "Version must be in format X.Y.Z (e.g., 1.0.0)"
     ),
   purpose: Yup.string()
     .required("Purpose is required")
@@ -23,11 +23,11 @@ const NewApplicationValidationSchema = Yup.object({
   sensitivity: Yup.string()
     .oneOf(
       ["low", "medium", "high"],
-      "Sensitivity must be Low, Medium, or High",
+      "Sensitivity must be Low, Medium, or High"
     )
     .optional(),
   compliance_status: Yup.array().optional(),
-  risk_level: Yup.string().optional(),
+  risk_level: Yup.string().optional()
 });
 
 const AgentValidationSchema = Yup.object({
@@ -94,4 +94,10 @@ const SelectionValidationSchema = Yup.object({
     .required("Selection is required")
 });
 
-export { NewApplicationValidationSchema, AgentValidationSchema, ModelValidationSchema, DataSetsValidationSchema, SelectionValidationSchema };
+export {
+  NewApplicationValidationSchema,
+  AgentValidationSchema,
+  ModelValidationSchema,
+  DataSetsValidationSchema,
+  SelectionValidationSchema
+};

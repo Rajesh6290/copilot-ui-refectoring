@@ -23,9 +23,9 @@ export async function POST(req: Request): Promise<NextResponse> {
         status: 500,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
+          "Access-Control-Allow-Origin": "*"
+        }
+      }
     );
   }
 
@@ -38,9 +38,9 @@ export async function POST(req: Request): Promise<NextResponse> {
         status: 401,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
+          "Access-Control-Allow-Origin": "*"
+        }
+      }
     );
   }
 
@@ -60,16 +60,15 @@ export async function POST(req: Request): Promise<NextResponse> {
     } catch (e) {
       return new NextResponse(
         JSON.stringify({
-          error:
-            e instanceof Error ? e.message : "Invalid JSON in request body",
+          error: e instanceof Error ? e.message : "Invalid JSON in request body"
         } as ErrorResponse),
         {
           status: 400,
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        },
+            "Access-Control-Allow-Origin": "*"
+          }
+        }
       );
     }
 
@@ -80,14 +79,14 @@ export async function POST(req: Request): Promise<NextResponse> {
         Accept: "text/event-stream",
         "Content-Type": "application/json",
         "Cache-Control": "no-cache",
-        Connection: "keep-alive",
+        Connection: "keep-alive"
       },
       body: JSON.stringify({
         question: body.question,
         answer: body.answer ?? "",
-        flag: body.flag,
+        flag: body.flag
       }),
-      cache: "no-store" as RequestCache,
+      cache: "no-store" as RequestCache
     });
 
     // Handle backend errors
@@ -96,15 +95,15 @@ export async function POST(req: Request): Promise<NextResponse> {
       return new NextResponse(
         JSON.stringify({
           error: `Backend error: ${response.status}`,
-          details: errorText,
+          details: errorText
         } as ErrorResponse),
         {
           status: response.status,
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        },
+            "Access-Control-Allow-Origin": "*"
+          }
+        }
       );
     }
 
@@ -115,13 +114,13 @@ export async function POST(req: Request): Promise<NextResponse> {
     // Use TransformStream for debugging and passthrough
     const { readable, writable } = new TransformStream<Uint8Array, Uint8Array>({
       transform(chunk, controller) {
-         new TextDecoder().decode(chunk);
+        new TextDecoder().decode(chunk);
 
         controller.enqueue(chunk);
       },
       flush(controller) {
         controller.terminate();
-      },
+      }
     });
 
     // Pipe the backend response to the writable stream
@@ -134,32 +133,32 @@ export async function POST(req: Request): Promise<NextResponse> {
         "Cache-Control": "no-cache",
         Connection: "keep-alive",
         "Access-Control-Allow-Origin": "*",
-        "X-Accel-Buffering": "no", // Prevent proxy buffering
-      },
+        "X-Accel-Buffering": "no" // Prevent proxy buffering
+      }
     });
   } catch (error) {
     return new NextResponse(
       JSON.stringify({
-        error: error instanceof Error ? error.message : "Internal Server Error",
+        error: error instanceof Error ? error.message : "Internal Server Error"
       } as ErrorResponse),
       {
         status: 500,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-      },
+          "Access-Control-Allow-Origin": "*"
+        }
+      }
     );
   }
 }
 
-export  function OPTIONS() {
+export function OPTIONS() {
   return new NextResponse(null, {
     headers: {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type, Authorization",
-      "Access-Control-Max-Age": "86400",
-    },
+      "Access-Control-Max-Age": "86400"
+    }
   });
 }

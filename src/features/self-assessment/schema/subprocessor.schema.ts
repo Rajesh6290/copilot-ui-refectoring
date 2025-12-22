@@ -7,6 +7,6 @@ const SubProcessorValidationSchema = Yup.object().shape({
     .required("Purpose is required")
     .min(3, "Purpose must be at least 3 characters"),
   location: Yup.string().required("Location is required"),
-  trust_center_url: Yup.string().url().optional(),
+  trust_center_url: Yup.string().url().optional()
 });
 export default SubProcessorValidationSchema;

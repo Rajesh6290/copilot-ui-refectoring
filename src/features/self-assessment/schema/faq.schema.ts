@@ -5,6 +5,6 @@ const FAQValidationSchema = Yup.object().shape({
     .min(5, "Question must be at least 5 characters"),
   answer: Yup.string()
     .required("Answer is required")
-    .min(10, "Answer must be at least 10 characters"),
+    .min(10, "Answer must be at least 10 characters")
 });
 export default FAQValidationSchema;
