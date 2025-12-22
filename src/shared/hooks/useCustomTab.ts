@@ -12,11 +12,11 @@ interface TabItem {
 
 const useCustomTab = (tab: string) => {
   const currentAccess = useCurrentMenuItem();
+  const visibleTabs = currentAccess?.tabs?.filter(
+    (e: TabItem) => e?.permission?.is_shown
+  ) || [];
   const tabMapping: Record<string, string> =
-    currentAccess?.tabs
-      ?.filter(
-        (e: TabItem) => e?.permission?.is_shown
-      )
+    visibleTabs
       ?.reduce((acc: Record<string, string>, tabs: TabItem) => {
         const label = tabs.metadata?.label;
         const reference = tabs.metadata?.reference;
@@ -32,7 +32,8 @@ const useCustomTab = (tab: string) => {
   return {
     currentAccess,
     tabLabels,
-    activeReference
+    activeReference,
+    visibleTabs
   };
 };
 
