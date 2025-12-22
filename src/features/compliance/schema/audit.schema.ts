@@ -13,24 +13,26 @@ const NewAuditValidationSchemas = [
           "End date must be after start date",
           function (value) {
             const { start_date } = this.parent;
-            if (!value || !start_date) {return true;}
+            if (!value || !start_date) {
+              return true;
+            }
             return new Date(value) >= new Date(start_date);
-          },
-        ),
-    }),
+          }
+        )
+    })
   }),
   // Step 2: Framework Selection
   Yup.object().shape({
     framework_ids: Yup.array()
       .min(1, "Please select at least one framework")
-      .required("Please select at least one framework"),
+      .required("Please select at least one framework")
   }),
   // Step 3: Auditor Information (Optional)
   Yup.object().shape({
     auditor_name: Yup.string(),
     auditor_email: Yup.string().email("Invalid email format"),
-    auditor_role: Yup.string(),
-  }),
+    auditor_role: Yup.string()
+  })
 ];
 // Validation schemas for each step
 const UpdateAuditValidationSchemas = [
@@ -48,18 +50,20 @@ const UpdateAuditValidationSchemas = [
           "End date must be after start date",
           function (value) {
             const { start_date } = this.parent;
-            if (!value || !start_date) {return true;}
+            if (!value || !start_date) {
+              return true;
+            }
             return new Date(value) >= new Date(start_date);
-          },
-        ),
-    }),
+          }
+        )
+    })
   }),
   // Step 2: Framework Selection
   Yup.object().shape({
     framework_ids: Yup.array()
       .min(1, "Please select at least one framework")
-      .required("Please select at least one framework"),
-  }),
+      .required("Please select at least one framework")
+  })
 ];
 // Validation schema for Add Auditor form
 const AddAuditorSchema = Yup.object().shape({
@@ -67,7 +71,11 @@ const AddAuditorSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
-  role: Yup.string().required("Role is required"),
+  role: Yup.string().required("Role is required")
 });
 
-export { NewAuditValidationSchemas,UpdateAuditValidationSchemas,AddAuditorSchema }
+export {
+  NewAuditValidationSchemas,
+  UpdateAuditValidationSchemas,
+  AddAuditorSchema
+};

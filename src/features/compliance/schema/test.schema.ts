@@ -11,11 +11,11 @@ const NewTestValidationSchema = Yup.object({
     .required("Frequency is required")
     .oneOf(
       ["10sec", "daily", "weekly", "monthly", "quarterly", "yearly"],
-      "Please select a valid frequency",
+      "Please select a valid frequency"
     ),
   preferredRunTime: Yup.string().required("Preferred run time is required"),
   application: Yup.string().required("Application is required"),
-  notes: Yup.string().max(1000, "Notes must be less than 1000 characters"),
+  notes: Yup.string().max(1000, "Notes must be less than 1000 characters")
 });
 const UpdateTestValidationSchema = Yup.object({
   firstName: Yup.string()
@@ -29,10 +29,10 @@ const UpdateTestValidationSchema = Yup.object({
     .required("Frequency is required")
     .oneOf(
       ["10sec", "daily", "weekly", "monthly", "quarterly", "yearly"],
-      "Please select a valid frequency",
+      "Please select a valid frequency"
     ),
   preferredRunTime: Yup.string().required("Preferred run time is required"),
   application: Yup.string().required("Application is required"),
-  notes: Yup.string().max(1000, "Notes must be less than 1000 characters"),
+  notes: Yup.string().max(1000, "Notes must be less than 1000 characters")
 });
-export { NewTestValidationSchema,UpdateTestValidationSchema }
+export { NewTestValidationSchema, UpdateTestValidationSchema };
