@@ -13,9 +13,9 @@ const IssueValidationSchema = Yup.object().shape({
     user_id: Yup.string().required("Please select an assignee"),
     email: Yup.string().nullable(),
     username: Yup.string().nullable(),
-    role: Yup.string().nullable(),
+    role: Yup.string().nullable()
   }),
   due_date: Yup.string().required("Due Date is required"),
-  tags: Yup.array().of(Yup.string()),
+  tags: Yup.array().of(Yup.string())
 });
 export { IssueValidationSchema };

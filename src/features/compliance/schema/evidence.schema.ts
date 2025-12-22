@@ -20,7 +20,7 @@ const NewEvidenceValidationSchema = Yup.object({
     .required("Time sensitivity is required"),
   files: Yup.array()
     .min(1, "Please select at least one document")
-    .required("Document selection is required"),
+    .required("Document selection is required")
 });
 const NewVersionValidationSchema = Yup.object({
   description: Yup.string()
@@ -40,6 +40,6 @@ const NewVersionValidationSchema = Yup.object({
     .required("Recurrence is required"),
   files: Yup.array()
     .min(1, "Please select at least one document")
-    .required("Document selection is required"),
+    .required("Document selection is required")
 });
-export { NewEvidenceValidationSchema,NewVersionValidationSchema }
+export { NewEvidenceValidationSchema, NewVersionValidationSchema };
