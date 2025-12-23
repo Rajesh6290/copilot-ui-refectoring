@@ -172,6 +172,7 @@ const DefaultLayoutComponent = ({
               {![
                 "/",
                 "/self-assessment/responsible-ai",
+                "/risk-management/responsible-ai-report",
                 `/c/${params["id"]}`
               ]?.includes(name) && <CustomNavigation />}
               {children}
@@ -209,3 +210,4 @@ const DefaultLayoutComponent = ({
 };
 
 export default UseProtectedRoutes(DefaultLayoutComponent);
+// export default DefaultLayoutComponent;

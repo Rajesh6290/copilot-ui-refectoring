@@ -88,64 +88,64 @@ const CustomMetricsFormComponent = ({
     }
   }, [templateData, selectedProvider]);
 
-  const useCaseOptions = [
-    { value: "", label: "Select a use case" },
-    { value: "transportation", label: "Transportation" },
-    { value: "financial_services", label: "Financial Services" },
-    { value: "healthcare_diagnostics", label: "Healthcare Diagnostics" },
-    { value: "customer_support", label: "Customer Support" },
-    {
-      value: "speech_recognition_systems",
-      label: "Speech Recognition Systems"
-    },
-    { value: "industrial_automation", label: "Industrial Automation" },
-    { value: "marketing_and_advertising", label: "Marketing & Advertising" },
-    { value: "ecommerce_and_retail", label: "E-commerce & Retail" },
-    { value: "legal_document_review", label: "Legal Document Review" },
-    { value: "agriculture", label: "Agriculture" },
-    {
-      value: "energy_management_and_utilities",
-      label: "Energy Management & Utilities"
-    },
-    { value: "supply_chain_optimization", label: "Supply Chain Optimization" },
-    {
-      value: "fraud_detection_in_finance_and_security",
-      label: "Fraud Detection in Finance & Security"
-    },
-    {
-      value: "cybersecurity_and_threat_detection",
-      label: "Cybersecurity & Threat Detection"
-    },
-    {
-      value: "urban_planning_and_smart_infrastructure",
-      label: "Urban Planning & Smart Infrastructure"
-    },
-    { value: "drug_discovery", label: "Drug Discovery" },
-    { value: "education_and_edtech", label: "Education & EdTech" },
-    {
-      value: "retail_pricing_optimization",
-      label: "Retail Pricing Optimization"
-    },
-    { value: "environmental_monitoring", label: "Environmental Monitoring" },
-    { value: "mental_health_support", label: "Mental Health Support" },
-    { value: "autonomous_drones", label: "Autonomous Drones" },
-    {
-      value: "fake_news_detection_in_media_and_journalism",
-      label: "Fake News Detection in Media & Journalism"
-    },
-    {
-      value: "insurance_claims_processing",
-      label: "Insurance Claims Processing"
-    },
-    {
-      value: "law_enforcement_and_public_safety",
-      label: "Law Enforcement & Public Safety"
-    },
-    { value: "biometrics_system", label: "Biometrics System" },
-    { value: "image_generation", label: "Image Generation" },
-    { value: "robotics", label: "Robotics" },
-    { value: "others", label: "Others" }
-  ];
+  // const useCaseOptions = [
+  //   { value: "", label: "Select a use case" },
+  //   { value: "transportation", label: "Transportation" },
+  //   { value: "financial_services", label: "Financial Services" },
+  //   { value: "healthcare_diagnostics", label: "Healthcare Diagnostics" },
+  //   { value: "customer_support", label: "Customer Support" },
+  //   {
+  //     value: "speech_recognition_systems",
+  //     label: "Speech Recognition Systems"
+  //   },
+  //   { value: "industrial_automation", label: "Industrial Automation" },
+  //   { value: "marketing_and_advertising", label: "Marketing & Advertising" },
+  //   { value: "ecommerce_and_retail", label: "E-commerce & Retail" },
+  //   { value: "legal_document_review", label: "Legal Document Review" },
+  //   { value: "agriculture", label: "Agriculture" },
+  //   {
+  //     value: "energy_management_and_utilities",
+  //     label: "Energy Management & Utilities"
+  //   },
+  //   { value: "supply_chain_optimization", label: "Supply Chain Optimization" },
+  //   {
+  //     value: "fraud_detection_in_finance_and_security",
+  //     label: "Fraud Detection in Finance & Security"
+  //   },
+  //   {
+  //     value: "cybersecurity_and_threat_detection",
+  //     label: "Cybersecurity & Threat Detection"
+  //   },
+  //   {
+  //     value: "urban_planning_and_smart_infrastructure",
+  //     label: "Urban Planning & Smart Infrastructure"
+  //   },
+  //   { value: "drug_discovery", label: "Drug Discovery" },
+  //   { value: "education_and_edtech", label: "Education & EdTech" },
+  //   {
+  //     value: "retail_pricing_optimization",
+  //     label: "Retail Pricing Optimization"
+  //   },
+  //   { value: "environmental_monitoring", label: "Environmental Monitoring" },
+  //   { value: "mental_health_support", label: "Mental Health Support" },
+  //   { value: "autonomous_drones", label: "Autonomous Drones" },
+  //   {
+  //     value: "fake_news_detection_in_media_and_journalism",
+  //     label: "Fake News Detection in Media & Journalism"
+  //   },
+  //   {
+  //     value: "insurance_claims_processing",
+  //     label: "Insurance Claims Processing"
+  //   },
+  //   {
+  //     value: "law_enforcement_and_public_safety",
+  //     label: "Law Enforcement & Public Safety"
+  //   },
+  //   { value: "biometrics_system", label: "Biometrics System" },
+  //   { value: "image_generation", label: "Image Generation" },
+  //   { value: "robotics", label: "Robotics" },
+  //   { value: "others", label: "Others" }
+  // ];
 
   const initialValues = {
     application_name: "",
@@ -519,7 +519,7 @@ const CustomMetricsFormComponent = ({
                         </div>
                       )}
 
-                      <div className="space-y-2">
+                      {/* <div className="space-y-2">
                         <span className="block text-sm font-semibold text-gray-700 dark:text-gray-300">
                           Use Case <span className="text-red-500">*</span>
                         </span>
@@ -557,7 +557,7 @@ const CustomMetricsFormComponent = ({
                             </div>
                           )}
                         </ErrorMessage>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* Auto-populate fields */}
