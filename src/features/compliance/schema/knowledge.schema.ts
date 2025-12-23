@@ -47,4 +47,9 @@ const StatusUpdateValidationSchema = Yup.object({
     .max(500, "Comment must not exceed 500 characters")
 });
 
-export { NewKnowledgeValidationSchema, UploadKnowledgeValidationSchema,UpdatenowledgeValidationSchema,StatusUpdateValidationSchema };
+export {
+  NewKnowledgeValidationSchema,
+  UploadKnowledgeValidationSchema,
+  UpdatenowledgeValidationSchema,
+  StatusUpdateValidationSchema
+};
