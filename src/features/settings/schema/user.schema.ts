@@ -7,7 +7,7 @@ const InviteUserValidationSchema = Yup.object({
       "Please enter a valid email address"
     ),
   role: Yup.string().required("Role is required"),
-  group: Yup.array().optional(),
+  group: Yup.array().optional()
 });
 const UpdateUserValidationSchema = Yup.object({
   email: Yup.string()
@@ -16,4 +16,4 @@ const UpdateUserValidationSchema = Yup.object({
   role: Yup.string().required("Role is required"),
   group: Yup.array().optional()
 });
-export { InviteUserValidationSchema,UpdateUserValidationSchema };
+export { InviteUserValidationSchema, UpdateUserValidationSchema };
