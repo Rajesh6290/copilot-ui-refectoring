@@ -64,4 +64,9 @@ const UpdateChannelSchema = Yup.object({
     )
 });
 
-export { JiraConfigurationSchema ,SlackConfigurationSchema,ChannelSchema,UpdateChannelSchema }
+export {
+  JiraConfigurationSchema,
+  SlackConfigurationSchema,
+  ChannelSchema,
+  UpdateChannelSchema
+};

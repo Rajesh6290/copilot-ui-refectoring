@@ -11,7 +11,7 @@ const NewIncidentValidationSchema = Yup.object().shape({
   tags: Yup.array().of(Yup.string()),
   impact_scope: Yup.string().required("Impact scope is required"),
   reported_at: Yup.string(),
-  due_date: Yup.string().required("Due Date is required"),
+  due_date: Yup.string().required("Due Date is required")
 });
 
-export { NewIncidentValidationSchema }
+export { NewIncidentValidationSchema };
