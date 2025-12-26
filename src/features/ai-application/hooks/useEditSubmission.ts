@@ -19,7 +19,7 @@ export const useEditSubmission = ({
   setShowModelDialog,
   setShowAgentDialog,
   setShowDatasetDialog,
-  mutate,
+  mutate
 }: UseEditSubmissionProps) => {
   const { mutation, isLoading } = useMutation();
 
@@ -35,20 +35,23 @@ export const useEditSubmission = ({
       fine_tuned: string;
       eval_metrics: string;
     },
-    { setSubmitting, resetForm }: {
+    {
+      setSubmitting,
+      resetForm
+    }: {
       setSubmitting: (isSubmitting: boolean) => void;
       resetForm: () => void;
-    },
+    }
   ) => {
     try {
       const payload = {
         ...values,
-        fine_tuned: values.fine_tuned === "true",
+        fine_tuned: values.fine_tuned === "true"
       };
       const res = await mutation(`model?doc_id=${selectedModel?.doc_id}`, {
         method: "PUT",
         isAlert: false,
-        body: payload,
+        body: payload
       });
 
       if (res?.status === 200) {
@@ -57,7 +60,7 @@ export const useEditSubmission = ({
         resetForm();
         setShowModelDialog(false);
       }
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       toast.error(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setSubmitting(false);
@@ -73,10 +76,13 @@ export const useEditSubmission = ({
       human_in_loop: string;
       is_active: string;
     },
-    { setSubmitting, resetForm }: {
+    {
+      setSubmitting,
+      resetForm
+    }: {
       setSubmitting: (isSubmitting: boolean) => void;
       resetForm: () => void;
-    },
+    }
   ) => {
     try {
       const payload = {
@@ -85,12 +91,12 @@ export const useEditSubmission = ({
           ? [values.action_supported]
           : [],
         human_in_loop: values.human_in_loop === "true",
-        is_active: values.is_active === "true",
+        is_active: values.is_active === "true"
       };
       const res = await mutation(`agent?doc_id=${selectedAgent?.doc_id}`, {
         method: "PUT",
         isAlert: false,
-        body: payload,
+        body: payload
       });
 
       if (res?.status === 200) {
@@ -99,7 +105,7 @@ export const useEditSubmission = ({
         resetForm();
         setShowAgentDialog(false);
       }
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       toast.error(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setSubmitting(false);
@@ -116,20 +122,23 @@ export const useEditSubmission = ({
       size_in_gb: number | null;
       preprocessing_steps: string[];
     },
-    { setSubmitting, resetForm }: {
+    {
+      setSubmitting,
+      resetForm
+    }: {
       setSubmitting: (isSubmitting: boolean) => void;
       resetForm: () => void;
-    },
+    }
   ) => {
     try {
       const payload = {
         ...values,
-        contains_sensitive_data: values.contains_sensitive_data === "true",
+        contains_sensitive_data: values.contains_sensitive_data === "true"
       };
       const res = await mutation(`dataset?doc_id=${selectedDataset?.doc_id}`, {
         method: "PUT",
         isAlert: false,
-        body: payload,
+        body: payload
       });
 
       if (res?.status === 200) {
@@ -138,7 +147,7 @@ export const useEditSubmission = ({
         resetForm();
         setShowDatasetDialog(false);
       }
-    } catch (error:unknown) {
+    } catch (error: unknown) {
       toast.error(error instanceof Error ? error.message : "An error occurred");
     } finally {
       setSubmitting(false);
@@ -149,6 +158,6 @@ export const useEditSubmission = ({
     handleSubmitEditModel,
     handleSubmitEditAgent,
     handleSubmitEditDataset,
-    isLoading,
+    isLoading
   };
 };

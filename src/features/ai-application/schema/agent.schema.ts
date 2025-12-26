@@ -14,12 +14,12 @@ const ModelValidationSchema = Yup.object({
     .required("Version is required")
     .matches(
       /^\d+\.\d+\.\d+$/,
-      "Version must be in format X.Y.Z (e.g., 1.0.0)",
+      "Version must be in format X.Y.Z (e.g., 1.0.0)"
     ),
   model_status: Yup.string().required("Model Status is required"),
   compliance_status: Yup.array()
     .min(1, "At least one compliance status must be selected")
-    .required("Compliance Status is required"),
+    .required("Compliance Status is required")
 });
 
 const DatasetValidationSchema = Yup.object({
@@ -30,19 +30,23 @@ const DatasetValidationSchema = Yup.object({
     .required("Version is required")
     .matches(
       /^\d+\.\d+\.\d+$/,
-      "Version must be in format X.Y.Z (e.g., 1.0.0)",
+      "Version must be in format X.Y.Z (e.g., 1.0.0)"
     ),
   contains_sensitive_data: Yup.boolean().required(
-    "Contains Sensitive Data is required",
+    "Contains Sensitive Data is required"
   ),
   data_sources: Yup.string().required("Data Sources are required"),
-  used_for: Yup.string().required("Used For is required"),
+  used_for: Yup.string().required("Used For is required")
 });
 
 const SelectionValidationSchema = Yup.object({
   selectedItem: Yup.array()
     .min(1, "At least one model must be selected")
-    .required("Selection is required"),
+    .required("Selection is required")
 });
 
-export { ModelValidationSchema, DatasetValidationSchema, SelectionValidationSchema };
+export {
+  ModelValidationSchema,
+  DatasetValidationSchema,
+  SelectionValidationSchema
+};

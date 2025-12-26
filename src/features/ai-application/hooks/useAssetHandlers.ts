@@ -1,6 +1,11 @@
 import { toast } from "sonner";
 import Swal from "sweetalert2";
-import { Agent, AssetCreationMode, Dataset, Model } from "../types/overview.types";
+import {
+  Agent,
+  AssetCreationMode,
+  Dataset,
+  Model
+} from "../types/overview.types";
 import useMutation from "@/shared/hooks/useMutation";
 
 interface UseAssetHandlersProps {
@@ -32,7 +37,7 @@ export const useAssetHandlers = ({
   setShowDatasetDialog,
   setAgentData,
   setModelData,
-  mutate,
+  mutate
 }: UseAssetHandlersProps) => {
   const { mutation, isLoading } = useMutation();
 
@@ -74,21 +79,23 @@ export const useAssetHandlers = ({
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const res = await mutation(`model?doc_id=${model.doc_id}`, {
             method: "DELETE",
             isAlert: false,
-            body: null,
+            body: null
           });
           if (res?.status === 200) {
             toast.success("Model deleted successfully");
             mutate();
           }
-        } catch (error:unknown) {
-          toast.error(error instanceof Error ? error.message : "Failed to delete model");
+        } catch (error: unknown) {
+          toast.error(
+            error instanceof Error ? error.message : "Failed to delete model"
+          );
         }
       }
     });
@@ -102,21 +109,23 @@ export const useAssetHandlers = ({
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const res = await mutation(`agent?doc_id=${agent.doc_id}`, {
             method: "DELETE",
             isAlert: false,
-            body: null,
+            body: null
           });
           if (res?.status === 200) {
             toast.success("Agent deleted successfully");
             mutate();
           }
-        } catch (error:unknown) {
-          toast.error(error instanceof Error ? error.message : "Failed to delete model");
+        } catch (error: unknown) {
+          toast.error(
+            error instanceof Error ? error.message : "Failed to delete model"
+          );
         }
       }
     });
@@ -130,21 +139,23 @@ export const useAssetHandlers = ({
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
           const res = await mutation(`dataset?doc_id=${dataset.doc_id}`, {
             method: "DELETE",
             isAlert: false,
-            body: null,
+            body: null
           });
           if (res?.status === 200) {
             toast.success("Dataset deleted successfully");
             mutate();
           }
-        } catch (error:unknown) {
-          toast.error(error instanceof Error ? error.message : "Failed to delete model");
+        } catch (error: unknown) {
+          toast.error(
+            error instanceof Error ? error.message : "Failed to delete model"
+          );
         }
       }
     });
@@ -168,6 +179,6 @@ export const useAssetHandlers = ({
     handleDeleteAgent,
     handleDeleteDataset,
     closeAssetDialog,
-    isLoading,
+    isLoading
   };
 };

@@ -1,4 +1,3 @@
-
 import * as Yup from "yup";
 import { Agent, Dataset, Model } from "../types/overview.types";
 
@@ -6,7 +5,7 @@ export const useEditValidation = (
   selectedModel: Model | null,
   selectedAgent: Agent | null,
   selectedDataset: Dataset | null,
-  isEditMode: boolean,
+  isEditMode: boolean
 ) => {
   const ModelValidationSchema = Yup.object().shape({
     model_name: Yup.string()
@@ -27,7 +26,7 @@ export const useEditValidation = (
       .min(1, "Select at least one compliance status")
       .required("Compliance status is required"),
     fine_tuned: Yup.boolean().required("Fine-tuned status is required"),
-    eval_metrics: Yup.string(),
+    eval_metrics: Yup.string()
   });
 
   const DatasetValidationSchema = Yup.object().shape({
@@ -37,7 +36,7 @@ export const useEditValidation = (
       .required("Dataset name is required"),
     dataset_version: Yup.string().required("Version is required"),
     contains_sensitive_data: Yup.string().required(
-      "Please select if dataset contains sensitive data",
+      "Please select if dataset contains sensitive data"
     ),
     data_sources: Yup.string().required("Data source is required"),
     used_for: Yup.string().required("Used for is required"),
@@ -45,7 +44,7 @@ export const useEditValidation = (
       .nullable()
       .min(0, "Size cannot be negative")
       .optional(),
-    preprocessing_steps: Yup.array().of(Yup.string()).nullable().optional(),
+    preprocessing_steps: Yup.array().of(Yup.string()).nullable().optional()
   });
 
   const AgentValidationSchema = Yup.object().shape({
@@ -61,7 +60,7 @@ export const useEditValidation = (
       .min(1, "Agent capability is required")
       .required("Agent capability is required"),
     human_in_loop: Yup.boolean().optional(),
-    is_active: Yup.boolean().optional(),
+    is_active: Yup.boolean().optional()
   });
 
   const getModelInitialValues = () => {
@@ -81,7 +80,7 @@ export const useEditValidation = (
         model_status: selectedModel.model_status || "",
         compliance_status: complianceStatus,
         fine_tuned: selectedModel.fine_tuned ? "true" : "false",
-        eval_metrics: selectedModel.eval_metrics || "",
+        eval_metrics: selectedModel.eval_metrics || ""
       };
     }
     return {
@@ -93,7 +92,7 @@ export const useEditValidation = (
       model_status: "",
       compliance_status: [],
       fine_tuned: "false",
-      eval_metrics: "",
+      eval_metrics: ""
     };
   };
 
@@ -107,7 +106,7 @@ export const useEditValidation = (
           ? selectedAgent.action_supported[0] || ""
           : selectedAgent.action_supported || "",
         human_in_loop: String(selectedAgent.human_in_loop ?? false),
-        is_active: String(selectedAgent.is_active ?? false),
+        is_active: String(selectedAgent.is_active ?? false)
       };
     }
     return {
@@ -116,7 +115,7 @@ export const useEditValidation = (
       version: "1.0.0",
       action_supported: "",
       human_in_loop: "false",
-      is_active: "false",
+      is_active: "false"
     };
   };
 
@@ -131,7 +130,7 @@ export const useEditValidation = (
         data_sources: selectedDataset.data_sources || "",
         used_for: selectedDataset.used_for || "",
         size_in_gb: selectedDataset.size_in_gb || null,
-        preprocessing_steps: selectedDataset.preprocessing_steps || [],
+        preprocessing_steps: selectedDataset.preprocessing_steps || []
       };
     }
     return {
@@ -141,7 +140,7 @@ export const useEditValidation = (
       data_sources: "",
       used_for: "",
       size_in_gb: null,
-      preprocessing_steps: [],
+      preprocessing_steps: []
     };
   };
 
@@ -151,6 +150,6 @@ export const useEditValidation = (
     AgentValidationSchema,
     getModelInitialValues,
     getAgentInitialValues,
-    getDatasetInitialValues,
+    getDatasetInitialValues
   };
 };

@@ -1,4 +1,11 @@
-import { ActionSupportedOption, ComplianceStatusOption, DataSourceOption, ModelTypeOption, PreprocessingStepOption, UsedForOption } from "../types/overview.types";
+import {
+  ActionSupportedOption,
+  ComplianceStatusOption,
+  DataSourceOption,
+  ModelTypeOption,
+  PreprocessingStepOption,
+  UsedForOption
+} from "../types/overview.types";
 
 export const useAssetFormOptions = () => {
   const complianceStatusOptions: ComplianceStatusOption[] = [
@@ -8,19 +15,19 @@ export const useAssetFormOptions = () => {
     { value: "soc_2", label: "SOC 2" },
     { value: "not_assessed", label: "Not Assessed" },
     { value: "euro_ai", label: "EURO AI" },
-    { value: "nist", label: "NIST" },
+    { value: "nist", label: "NIST" }
   ];
 
   const modelTypeOptions: ModelTypeOption[] = [
     { value: "generative", label: "Generative" },
     { value: "predictive", label: "Predictive" },
-    { value: "other", label: "Other" },
+    { value: "other", label: "Other" }
   ];
 
   const dataSourcesOptions: DataSourceOption[] = [
     { value: "internal", label: "Internal" },
     { value: "public", label: "Public" },
-    { value: "third_party", label: "Third-party" },
+    { value: "third_party", label: "Third-party" }
   ];
 
   const usedForOptions: UsedForOption[] = [
@@ -29,7 +36,7 @@ export const useAssetFormOptions = () => {
     { value: "testing", label: "Testing" },
     { value: "rag", label: "RAG" },
     { value: "fine-tuning", label: "Fine-Tuning" },
-    { value: "other", label: "Other" },
+    { value: "other", label: "Other" }
   ];
 
   const preprocessingStepsOptions: PreprocessingStepOption[] = [
@@ -37,7 +44,7 @@ export const useAssetFormOptions = () => {
     { value: "tokenization", label: "Tokenization" },
     { value: "data_cleaning", label: "Data Cleaning" },
     { value: "feature_extraction", label: "Feature Extraction" },
-    { value: "encoding", label: "Encoding" },
+    { value: "encoding", label: "Encoding" }
   ];
 
   const actionSupportedOptions: ActionSupportedOption[] = [
@@ -46,7 +53,7 @@ export const useAssetFormOptions = () => {
     { value: "clustering", label: "Clustering" },
     { value: "recommendation", label: "Recommendation" },
     { value: "generation", label: "Generation" },
-    { value: "other", label: "Other" },
+    { value: "other", label: "Other" }
   ];
 
   return {
@@ -55,6 +62,6 @@ export const useAssetFormOptions = () => {
     dataSourcesOptions,
     usedForOptions,
     preprocessingStepsOptions,
-    actionSupportedOptions,
+    actionSupportedOptions
   };
 };

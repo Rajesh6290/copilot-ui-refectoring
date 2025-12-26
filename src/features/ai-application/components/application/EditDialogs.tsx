@@ -34,7 +34,7 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
   selectedDataset,
   selectedAgent,
   isEditMode,
-  mutate,
+  mutate
 }) => {
   // Custom hooks
   const {
@@ -43,19 +43,19 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
     DatasetValidationSchema,
     getModelInitialValues,
     getAgentInitialValues,
-    getDatasetInitialValues,
+    getDatasetInitialValues
   } = useEditValidation(
     selectedModel,
     selectedAgent,
     selectedDataset,
-    isEditMode,
+    isEditMode
   );
 
   const {
     handleSubmitEditModel,
     handleSubmitEditAgent,
     handleSubmitEditDataset,
-    isLoading: isEditLoading,
+    isLoading: isEditLoading
   } = useEditSubmission({
     selectedModel,
     selectedAgent,
@@ -63,7 +63,7 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
     setShowModelDialog,
     setShowAgentDialog,
     setShowDatasetDialog,
-    mutate,
+    mutate
   });
 
   const {
@@ -71,7 +71,7 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
     modelTypeOptions,
     dataSourcesOptions,
     usedForOptions,
-    preprocessingStepsOptions,
+    preprocessingStepsOptions
   } = useAssetFormOptions();
 
   return (
@@ -83,7 +83,7 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
         maxWidth="md"
         fullWidth
         PaperProps={{
-          className: "bg-white dark:bg-darkSidebarBackground rounded-lg",
+          className: "bg-white dark:bg-darkSidebarBackground rounded-lg"
         }}
       >
         <DialogTitle className="border-b border-gray-200 dark:border-neutral-700">
@@ -295,7 +295,7 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
         maxWidth="md"
         fullWidth
         PaperProps={{
-          className: "bg-white dark:bg-darkSidebarBackground rounded-lg",
+          className: "bg-white dark:bg-darkSidebarBackground rounded-lg"
         }}
       >
         <DialogTitle className="border-b border-gray-200 dark:border-neutral-700">
@@ -455,7 +455,7 @@ const EditDialogs: React.FC<EditDialogsProps> = ({
         maxWidth="md"
         fullWidth
         PaperProps={{
-          className: "bg-white dark:bg-darkSidebarBackground rounded-lg",
+          className: "bg-white dark:bg-darkSidebarBackground rounded-lg"
         }}
       >
         <DialogTitle className="border-b border-gray-200 dark:border-neutral-700">
