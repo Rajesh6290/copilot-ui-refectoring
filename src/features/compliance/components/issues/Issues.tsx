@@ -225,7 +225,7 @@ const Issues = ({
   isAccess
 }: {
   controlId: string;
-  isAccess: ISAccess;
+  isAccess?: ISAccess;
 }) => {
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
@@ -734,7 +734,7 @@ const Issues = ({
           search={search}
           statusFilter={statusFilter}
           priorityFilter={priorityFilter}
-          isAccess={isAccess}
+          isAccess={isAccess as ISAccess}
         />
         {MobileCardView}
       </div>
@@ -757,7 +757,7 @@ const Issues = ({
               search={search}
               statusFilter={statusFilter}
               priorityFilter={priorityFilter}
-              isAccess={isAccess}
+              isAccess={isAccess as ISAccess}
             />
           }
           title=""

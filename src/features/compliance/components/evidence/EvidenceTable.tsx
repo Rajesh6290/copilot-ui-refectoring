@@ -188,7 +188,7 @@ const EvidenceTable = ({
 }: {
   controlId: string;
   baseMutate: () => void;
-  isAccess: ISAccess;
+  isAccess?: ISAccess;
 }) => {
   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(0);
@@ -251,7 +251,7 @@ const EvidenceTable = ({
         controlId={controlId}
         onClose={() => setAttachOpen(false)}
         mutate={mutate}
-        isAccess={isAccess}
+        isAccess={isAccess as ISAccess}
       />
       {viewData && (
         <ViewEvidenece
@@ -263,7 +263,7 @@ const EvidenceTable = ({
           }}
           mutate={mutate}
           baseMutate={baseMutate}
-          isAccess={isAccess}
+          isAccess={isAccess as ISAccess}
           controlId={controlId}
         />
       )}
@@ -427,7 +427,7 @@ const EvidenceTable = ({
         customToolbar={
           <CustomToolBar
             onAddClick={handleClickOpen}
-            isAccess={isAccess}
+            isAccess={isAccess as ISAccess}
             search={search}
             setSearch={setSearch}
             setAttachOpen={setAttachOpen}
@@ -436,7 +436,7 @@ const EvidenceTable = ({
         detailPanel={(row: TableRow) => (
           <VersionsPanel
             row={row}
-            isAccess={isAccess}
+            isAccess={isAccess as ISAccess}
             setViewData={setViewData}
             setViewOpen={setViewOpen}
           />
