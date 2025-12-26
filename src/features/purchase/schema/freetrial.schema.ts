@@ -20,11 +20,13 @@ const PERSONAL_EMAIL_DOMAINS = [
   "tempmail.org",
   "10minutemail.com",
   "mailinator.com",
-  "yopmail.com",
+  "yopmail.com"
 ];
 
 export const isPersonalEmail = (email: string): boolean => {
-  if (!email || !email.includes("@")) {return false;}
+  if (!email || !email.includes("@")) {
+    return false;
+  }
   const domain = email.split("@")[1]?.toLowerCase() || "";
   return PERSONAL_EMAIL_DOMAINS.includes(domain);
 };
@@ -35,7 +37,9 @@ const FreeTrialValidationSchema = Yup.object({
   workEmail: Yup.string()
     .email("Invalid email format")
     .test("business-domain", "Please use a business email address", (value) => {
-      if (!value) {return false;}
+      if (!value) {
+        return false;
+      }
       return !isPersonalEmail(value);
     })
     .required("Work email is required"),
@@ -50,12 +54,12 @@ const FreeTrialValidationSchema = Yup.object({
     is: "phone",
     then: (schema) =>
       schema.required(
-        "Phone number is required when phone contact is selected",
+        "Phone number is required when phone contact is selected"
       ),
-    otherwise: (schema) => schema.notRequired(),
+    otherwise: (schema) => schema.notRequired()
   }),
   goals: Yup.string(),
-  updatesOptIn: Yup.boolean(),
+  updatesOptIn: Yup.boolean()
 });
 
 export default FreeTrialValidationSchema;
