@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 interface Option {
   label: string;
   value: string;
+  tooltip?: string;
 }
 
 interface Field {
@@ -22,19 +23,25 @@ interface CustomMultiSelectProps {
   field: Field;
   form: Form;
   options: Option[];
+  disabled?: boolean;
 }
 
 const CustomMultiSelect = ({
   field,
   form,
-  options
+  options,
+  disabled = false
 }: CustomMultiSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAbove, setShowAbove] = useState(false);
+  const [hoveredTag, setHoveredTag] = useState<string | null>(null);
+  const [hoveredOption, setHoveredOption] = useState<string | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const optionRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -97,6 +104,9 @@ const CustomMultiSelect = ({
   const selectedTags = field.value || [];
 
   const toggleDropdown = () => {
+    if (disabled) {
+      return;
+    }
     setIsOpen((prev) => !prev);
     setSearchTerm("");
 
@@ -166,13 +176,13 @@ const CustomMultiSelect = ({
   return (
     <div className="relative" ref={containerRef}>
       <div
-        tabIndex={0}
+        tabIndex={disabled ? -1 : 0}
         role="button"
         className={`min-h-10 w-full rounded-md border ${
           hasError
             ? "border-red-500"
             : "border-gray-300 dark:border-neutral-700"
-        } flex cursor-pointer flex-wrap items-center gap-2 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-darkMainBackground dark:text-white`}
+        } flex ${disabled ? "cursor-not-allowed bg-gray-100 dark:bg-gray-800" : "cursor-pointer"} flex-wrap items-center gap-2 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-darkMainBackground dark:text-white`}
         onClick={toggleDropdown}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -187,33 +197,46 @@ const CustomMultiSelect = ({
           </span>
         ) : (
           selectedTags.map((tagValue: string) => {
-            const tagLabel =
-              options.find(
-                (option: { value: string }) => option.value === tagValue
-              )?.label || tagValue;
+            const tagOption = options.find(
+              (option: Option) => option.value === tagValue
+            );
+            const tagLabel = tagOption?.label || tagValue;
             return (
               <div
                 key={tagValue}
-                className="flex items-center gap-1 rounded-md bg-tertiary-600 px-2 py-0.5 text-sm text-white"
+                className="relative flex items-center gap-1 rounded-md bg-tertiary-600 px-2 py-0.5 text-sm text-white"
+                onMouseEnter={(e) => {
+                  if (disabled && tagOption?.tooltip) {
+                    setHoveredTag(tagValue);
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    setTooltipPosition({
+                      top: rect.bottom + 4,
+                      left: rect.left
+                    });
+                  }
+                }}
+                onMouseLeave={() => setHoveredTag(null)}
               >
                 {tagLabel}
-                <button
-                  type="button"
-                  onClick={(e) => removeTag(tagValue, e)}
-                  className="text-white hover:text-gray-200 focus:outline-none"
-                >
-                  <svg
-                    className="h-3.5 w-3.5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                {!disabled && (
+                  <button
+                    type="button"
+                    onClick={(e) => removeTag(tagValue, e)}
+                    className="text-white hover:text-gray-200 focus:outline-none"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      className="h-3.5 w-3.5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                )}
               </div>
             );
           })
@@ -238,7 +261,7 @@ const CustomMultiSelect = ({
       {isOpen && (
         <div
           ref={dropdownRef}
-          className={`absolute z-50 flex max-h-60 w-full flex-col overflow-hidden rounded-md border border-gray-300 bg-white shadow-lg dark:border-neutral-700 dark:bg-darkSidebarBackground ${
+          className={`absolute z-50 flex max-h-60 w-full flex-col rounded-md border border-gray-300 bg-white shadow-lg dark:border-neutral-700 dark:bg-darkSidebarBackground ${
             showAbove ? "bottom-full mb-1" : "top-full mt-1"
           }`}
         >
@@ -253,50 +276,70 @@ const CustomMultiSelect = ({
               onClick={(e) => e.stopPropagation()}
             />
           </div>
-          <div className="overflow-y-auto">
+          <div className="overflow-y-auto overflow-x-visible">
             {filteredOptions.length > 0 ? (
               filteredOptions.map(
-                (option: { label: string; value: string }) => (
+                (option: {
+                  label: string;
+                  value: string;
+                  tooltip?: string;
+                }) => (
                   <div
                     key={option.value}
-                    tabIndex={0}
-                    role="button"
-                    className={`flex cursor-pointer items-center px-3 py-2 text-sm ${
-                      selectedTags.includes(option.value)
-                        ? "bg-indigo-100 dark:bg-indigo-900"
-                        : "hover:bg-gray-100 dark:hover:bg-neutral-800"
-                    }`}
-                    onClick={() => toggleTag(option.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") {
-                        toggleTag(option.value);
-                      }
+                    ref={(el) => {
+                      optionRefs.current[option.value] = el;
                     }}
+                    className="relative"
+                    onMouseEnter={(e) => {
+                      setHoveredOption(option.value);
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      setTooltipPosition({
+                        top: rect.top,
+                        left: rect.right
+                      });
+                    }}
+                    onMouseLeave={() => setHoveredOption(null)}
                   >
                     <div
-                      className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${
+                      tabIndex={0}
+                      role="button"
+                      className={`flex cursor-pointer items-center px-3 py-2 text-sm ${
                         selectedTags.includes(option.value)
-                          ? "border-indigo-600 bg-indigo-600"
-                          : "border-gray-400 dark:border-neutral-600"
+                          ? "bg-indigo-100 dark:bg-indigo-900"
+                          : "hover:bg-gray-100 dark:hover:bg-neutral-800"
                       }`}
+                      onClick={() => toggleTag(option.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          toggleTag(option.value);
+                        }
+                      }}
                     >
-                      {selectedTags.includes(option.value) && (
-                        <svg
-                          className="h-3 w-3 text-white"
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                        >
-                          <path
-                            fillRule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      )}
+                      <div
+                        className={`mr-2 flex h-4 w-4 items-center justify-center rounded border ${
+                          selectedTags.includes(option.value)
+                            ? "border-indigo-600 bg-indigo-600"
+                            : "border-gray-400 dark:border-neutral-600"
+                        }`}
+                      >
+                        {selectedTags.includes(option.value) && (
+                          <svg
+                            className="h-3 w-3 text-white"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        )}
+                      </div>
+                      <span className="uppercase dark:text-white">
+                        {option.label}
+                      </span>
                     </div>
-                    <span className="uppercase dark:text-white">
-                      {option.label}
-                    </span>
                   </div>
                 )
               )
@@ -308,6 +351,31 @@ const CustomMultiSelect = ({
           </div>
         </div>
       )}
+
+      {/* Tooltip rendered outside dropdown with fixed positioning */}
+      {(hoveredOption || hoveredTag) &&
+        (() => {
+          const option = options.find(
+            (opt: Option) => opt.value === (hoveredOption || hoveredTag)
+          );
+          return option?.tooltip ? (
+            <div
+              className="fixed z-[9999] max-w-xs rounded-md bg-gray-900 p-3 text-xs leading-relaxed text-white shadow-xl"
+              style={{
+                top: `${tooltipPosition.top}px`,
+                left: `${tooltipPosition.left}px`
+              }}
+            >
+              {hoveredOption && (
+                <div className="absolute -left-1 top-3 h-2 w-2 rotate-45 transform bg-gray-900"></div>
+              )}
+              {hoveredTag && (
+                <div className="absolute -top-1 left-4 h-2 w-2 rotate-45 transform bg-gray-900"></div>
+              )}
+              {option.tooltip}
+            </div>
+          ) : null;
+        })()}
     </div>
   );
 };
