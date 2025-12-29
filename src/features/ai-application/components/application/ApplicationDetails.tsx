@@ -55,7 +55,7 @@ export interface AIApplication {
   sensitivity: string;
   project_name: string | null;
   department: string | null;
-  ai_application_type: string;
+  ai_application_type: string | null;
   portfolio: string | null;
   privacy: string | null;
   lifecycle_stage: string | null;
@@ -83,6 +83,15 @@ export interface AIApplication {
   model_details: ModelDetail[];
   dataset_details: DatasetDetail[];
   data_sensitivity: string[];
+
+  deployment_context?: string | null;
+  intended_users?: string | null;
+  ai_behaviors?: string[];
+  automation_level?: string | null;
+  decision_binding?: boolean;
+  human_oversight_required?: boolean;
+  oversight_type?: string | null;
+  oversight_role?: string | null;
 }
 
 // Agent Detail

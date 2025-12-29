@@ -2,19 +2,25 @@
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Activity,
+  AlertCircle,
+  Brain,
   Calendar,
   Check,
   ChevronDown,
   Clock,
   Code,
+  Eye,
   FileText,
   GitBranch,
+  Network,
   Plus,
   Settings,
   Shield,
   Target,
+  UserCheck,
   Users,
-  X
+  X,
+  Zap
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { AIApplication } from "./ApplicationDetails";
@@ -202,7 +208,6 @@ const ApplicationDetailsContent: React.FC<ApplicationDetailsProps> = ({
   data,
   onDataSensitivityChange
 }) => {
-  // State for multi-select values
   const [dataSensitivity, setDataSensitivity] = useState<string[]>(
     data?.data_sensitivity || []
   );
@@ -363,6 +368,57 @@ const ApplicationDetailsContent: React.FC<ApplicationDetailsProps> = ({
                       : "GDPR Compliant, SOC 2 Certified"}
                   </span>
                 </div>
+                <div className="group">
+                  <div className="mb-3 flex items-center space-x-2">
+                    <Network className="h-4 w-4 text-blue-500" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Deployment Context
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 text-sm font-medium capitalize text-blue-700 shadow-sm dark:from-blue-900 dark:to-blue-800 dark:text-blue-200">
+                    {data?.deployment_context || "Not specified"}
+                  </span>
+                </div>
+
+                <div className="group">
+                  <div className="mb-3 flex items-center space-x-2">
+                    <Users className="h-4 w-4 text-indigo-500" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Intended Users
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 text-sm font-medium capitalize text-blue-700 shadow-sm dark:from-blue-900 dark:to-blue-800 dark:text-blue-200">
+                    {data?.intended_users || "Not specified"}
+                  </span>
+                </div>
+
+                <div className="group">
+                  <div className="mb-3 flex items-center space-x-2">
+                    <Zap className="h-4 w-4 text-amber-500" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Automation Level
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 text-sm font-medium capitalize text-blue-700 shadow-sm dark:from-blue-900 dark:to-blue-800 dark:text-blue-200">
+                    {data?.automation_level || "Not specified"}
+                  </span>
+                </div>
+
+                <div className="group">
+                  <div className="mb-3 flex items-center space-x-2">
+                    <AlertCircle className="h-4 w-4 text-orange-500" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Decision Binding
+                    </p>
+                  </div>
+                  <span className="inline-flex items-center rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 px-4 py-2 text-sm font-medium capitalize text-blue-700 shadow-sm dark:from-blue-900 dark:to-blue-800 dark:text-blue-200">
+                    {data?.decision_binding === true
+                      ? "Yes"
+                      : data?.decision_binding === false
+                        ? "No"
+                        : "Not specified"}
+                  </span>
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -388,6 +444,72 @@ const ApplicationDetailsContent: React.FC<ApplicationDetailsProps> = ({
                     iconColor="text-amber-500"
                   />
                 </div>
+
+                <div className="group">
+                  <div className="mb-3 flex items-center space-x-2">
+                    <Brain className="h-4 w-4 text-purple-500" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      AI Behaviors
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-white p-3 shadow-sm dark:bg-neutral-800">
+                    {data?.ai_behaviors && data.ai_behaviors.length > 0 ? (
+                      <p className="text-sm capitalize text-gray-800 dark:text-gray-200">
+                        {data.ai_behaviors
+                          .map((b) => b.replace(/_/g, " "))
+                          .join(", ")}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        Not specified
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="group">
+                  <div className="mb-3 flex items-center space-x-2">
+                    <UserCheck className="h-4 w-4 text-blue-500" />
+                    <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                      Human Oversight Required
+                    </p>
+                  </div>
+                  <p className="rounded-lg bg-white p-3 text-sm text-gray-800 shadow-sm dark:bg-neutral-800 dark:text-gray-200">
+                    {data?.human_oversight_required === true
+                      ? "Yes"
+                      : data?.human_oversight_required === false
+                        ? "No"
+                        : "Not specified"}
+                  </p>
+                </div>
+
+                {data?.oversight_type && (
+                  <div className="group">
+                    <div className="mb-3 flex items-center space-x-2">
+                      <Eye className="h-4 w-4 text-indigo-500" />
+                      <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Oversight Type
+                      </p>
+                    </div>
+                    <p className="rounded-lg bg-white p-3 text-sm capitalize text-gray-800 shadow-sm dark:bg-neutral-800 dark:text-gray-200">
+                      {data.oversight_type.replace(/_/g, " ")}
+                    </p>
+                  </div>
+                )}
+
+                {data?.oversight_role && (
+                  <div className="group">
+                    <div className="mb-3 flex items-center space-x-2">
+                      <UserCheck className="h-4 w-4 text-green-500" />
+                      <p className="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                        Oversight Role
+                      </p>
+                    </div>
+                    <p className="rounded-lg bg-white p-3 text-sm capitalize text-gray-800 shadow-sm dark:bg-neutral-800 dark:text-gray-200">
+                      {data.oversight_role.replace(/_/g, " ")}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

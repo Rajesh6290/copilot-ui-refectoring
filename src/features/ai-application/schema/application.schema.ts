@@ -27,7 +27,67 @@ const NewApplicationValidationSchema = Yup.object({
     )
     .optional(),
   compliance_status: Yup.array().optional(),
-  risk_level: Yup.string().optional()
+  risk_level: Yup.string().optional(),
+  deployment_context: Yup.string()
+    .oneOf(["development", "production"], "Invalid deployment context")
+    .required("Deployment context is required"),
+  intended_users: Yup.string()
+    .oneOf(["internal", "external"], "Invalid intended users selection")
+    .required("Intended users is required"),
+  ai_behaviors: Yup.array()
+    .of(
+      Yup.string().oneOf(
+        [
+          "content_generation",
+          "classification",
+          "recommendation",
+          "decision_support",
+          "autonomous_action"
+        ],
+        "Invalid AI behavior"
+      )
+    )
+    .min(1, "At least one AI behavior must be selected")
+    .required("AI behaviors are required"),
+  automation_level: Yup.string()
+    .oneOf(["low", "medium", "high"], "Invalid automation level")
+    .required("Automation level is required"),
+  decision_binding: Yup.boolean().required(
+    "Decision binding must be specified"
+  ),
+  human_oversight_required: Yup.boolean().required(
+    "Human oversight requirement must be specified"
+  ),
+  oversight_type: Yup.string()
+    .oneOf(
+      [
+        "pre_decision_approval",
+        "post_decision_review",
+        "exception_only_review"
+      ],
+      "Invalid oversight type"
+    )
+    .when("human_oversight_required", {
+      is: true,
+      then: (schema) =>
+        schema.required(
+          "Oversight type is required when human oversight is enabled"
+        ),
+      otherwise: (schema) => schema.optional()
+    }),
+  oversight_role: Yup.string()
+    .oneOf(
+      ["risk_officer", "compliance_reviewer", "product_owner"],
+      "Invalid oversight role"
+    )
+    .when("human_oversight_required", {
+      is: true,
+      then: (schema) =>
+        schema.required(
+          "Oversight role is required when human oversight is enabled"
+        ),
+      otherwise: (schema) => schema.optional()
+    })
 });
 
 const AgentValidationSchema = Yup.object({
