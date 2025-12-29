@@ -1,0 +1,84 @@
+# Stage 1: Building the application
+FROM node:20-alpine AS builder
+
+# Install dependencies needed for sharp
+RUN apk add --no-cache libc6-compat libpng-dev libjpeg-turbo-dev libwebp-dev vips-dev
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Explicitly install sharp
+RUN pnpm add sharp
+
+# Copy the rest of the application files
+COPY . .
+
+# Set build-time environment variables
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_c3VwZXJiLW9jdG9wdXMtOTIuY2xlcmsuYWNjb3VudHMuZGV2JA" \
+    NEXT_PUBLIC_TINYMCE_API_KEY="s8bckpxarp8prdm9h4mb8v29yqjgjmyf1blnbvfuyh2814qx" \
+    NEXT_PUBLIC_INTERNAL_DNS_URL='http://backend-service:80'\
+    NEXT_PUBLIC_WEB_SOCKET_URL='wss://websocket.cognitiveview.com/cv/v1/ws/policy-assistant'\
+    NEXT_PUBLIC_CHAT_WEB_SOCKET_URL='wss://websocket.cognitiveview.com/cv/v1/ws/chat'\
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID="G-JXZ6B4BECF"\
+     NEXT_PUBLIC_DATADOG_CLIENT_TOKEN="765d91c8-5209-4101-89e1-fe9caad76280"\
+    NEXT_PUBLIC_DATADOG_APPLICATION_ID="pubc6799b88cb6da21f2223dc8b26cf9030"\
+    NEXT_PUBLIC_SENTRY_ENABLED=false\
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT=qa\
+    SENTRY_AUTH_TOKEN=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
+
+# Build the application
+RUN NODE_OPTIONS=--max-old-space-size=4096 pnpm build
+
+# Stage 2: Running the application
+FROM node:18-alpine AS runner
+
+# Install dependencies needed for sharp
+RUN apk add --no-cache libc6-compat libpng-dev libjpeg-turbo-dev libwebp-dev vips-dev
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+WORKDIR /app
+
+# Set production environment
+ENV NODE_ENV=production
+
+# Copy necessary files from builder stage
+COPY --from=builder /app/next.config.ts ./
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/pnpm-lock.yaml ./
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# Set build-time environment variables
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="pk_test_c3VwZXJiLW9jdG9wdXMtOTIuY2xlcmsuYWNjb3VudHMuZGV2JA" \
+    NEXT_PUBLIC_TINYMCE_API_KEY="s8bckpxarp8prdm9h4mb8v29yqjgjmyf1blnbvfuyh2814qx" \
+    NEXT_PUBLIC_INTERNAL_DNS_URL='http://backend-service.default.svc.cluster.local'\
+    NEXT_PUBLIC_WEB_SOCKET_URL='wss://websocket.cognitiveview.com/cv/v1/ws/policy-assistant'\
+    NEXT_PUBLIC_CHAT_WEB_SOCKET_URL='wss://websocket.cognitiveview.com/cv/v1/ws/chat'\
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID="G-JXZ6B4BECF"\
+    NEXT_PUBLIC_DATADOG_CLIENT_TOKEN="765d91c8-5209-4101-89e1-fe9caad76280"\
+    NEXT_PUBLIC_DATADOG_APPLICATION_ID="pubc6799b88cb6da21f2223dc8b26cf9030"\
+    NEXT_PUBLIC_SENTRY_ENABLED=false\
+    NEXT_PUBLIC_SENTRY_ENVIRONMENT=qa\
+    SENTRY_AUTH_TOKEN=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
+
+# Install production dependencies
+RUN pnpm install --prod --no-frozen-lockfile
+
+RUN pnpm add sharp
+
+EXPOSE 3000
+
+CMD ["node", "server.js"]
+

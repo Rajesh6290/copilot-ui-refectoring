@@ -1,0 +1,112 @@
+definitions:
+  services:
+    docker:
+      memory: 16384
+
+pipelines:
+  custom:
+    AWS:
+      - step:
+          name: Build and Push Docker Image to ECR
+          services:
+            - docker
+              # memory: 14336  # Allocating 14 GB to the Docker service
+          caches:
+            - docker
+          size: 2x
+          script:
+            - docker build -t frontend-v2-default .
+            - pipe: atlassian/aws-ecr-push-image:2.4.2
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: us-east-2
+                IMAGE_NAME: frontend-v2-default
+                TAGS: "latest"
+                REPO_NAME: frontend-v2-default
+      - step:
+          name: Deploy to Kubernetes via EC2 Instance
+          deployment: production
+          script:
+            - mkdir -p ~/.ssh
+            - echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/id_rsa
+            - chmod 600 ~/.ssh/id_rsa
+            - ssh -v -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ubuntu@$EC2_INSTANCE "sh ~/platform/frontend/deploy.sh"
+
+    AZURE-Production:
+      - step:
+          name: Build and Push Docker Image to Azure ACR
+          image: mcr.microsoft.com/azure-cli
+
+          services:
+            - docker
+          caches:
+            - docker
+          size: 16x
+          script:
+            - echo "Authenticating with Azure..."
+            - 'echo "Tenant ID: $AZURE_TENANT_ID"'
+            - 'echo "Client ID: $AZURE_CLIENT_ID"'
+            - 'echo "Client Secret ID: $AZURE_CLIENT_SECRET"'
+            - az login --service-principal --username "$AZURE_CLIENT_ID" --password="$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID"
+
+            - echo "Logging into Azure Container Registry..."
+            - az acr login --name $AZURE_ACR_NAME
+
+            - echo "Building Docker image..."
+            - docker build -f Dockerfile.prod -t frontend .
+
+            - echo "Tagging Docker image for ACR..."
+            - docker tag frontend:latest $AZURE_ACR_NAME.azurecr.io/frontend/frontend:latest
+
+            - echo "Pushing Docker image to ACR..."
+            - docker push $AZURE_ACR_NAME.azurecr.io/frontend/frontend:latest
+
+      - step:
+          name: Deploy to Azure Kubernetes via VM
+          deployment: production
+          script:
+            - mkdir -p ~/.ssh
+            - echo "$SSH_PRIVATE_KEY_AZURE" | base64 -d > ~/.ssh/id_ed25519
+            - chmod 600 ~/.ssh/id_ed25519
+            - ssh-keyscan "$AZURE_VM_INSTANCE" >> ~/.ssh/known_hosts
+            - ssh -i ~/.ssh/id_ed25519 azureuser@$AZURE_VM_INSTANCE "sh ~/platform/frontend/deploy.sh"
+
+    AZURE-QA:
+      - step:
+          name: Build and Push Docker Image to Azure ACR
+          image: mcr.microsoft.com/azure-cli
+
+          services:
+            - docker
+          caches:
+            - docker
+          size: 16x
+          script:
+            - echo "Authenticating with Azure..."
+            - 'echo "Tenant ID: $AZURE_TENANT_ID"'
+            - 'echo "Client ID: $AZURE_CLIENT_ID"'
+            - 'echo "Client Secret ID: $AZURE_CLIENT_SECRET"'
+            - az login --service-principal --username "$AZURE_CLIENT_ID" --password="$AZURE_CLIENT_SECRET" --tenant "$AZURE_TENANT_ID"
+
+            - echo "Logging into Azure Container Registry..."
+            - az acr login --name governancecvfrontend
+
+            - echo "Building Docker image..."
+            - docker build -f Dockerfile.dev -t frontend-v2-default .
+
+            - echo "Tagging Docker image for ACR..."
+            - docker tag frontend-v2-default:latest governancecvfrontend.azurecr.io/frontend-v2-default:latest
+
+            - echo "Pushing Docker image to ACR..."
+            - docker push governancecvfrontend.azurecr.io/frontend-v2-default:latest
+
+      - step:
+          name: Deploy to Azure Kubernetes via VM
+          deployment: production
+          script:
+            - mkdir -p ~/.ssh
+            - echo "$SSH_PRIVATE_KEY_AZURE_QA" | base64 -d > ~/.ssh/id_ed25519
+            - chmod 600 ~/.ssh/id_ed25519
+            - ssh-keyscan "$AZURE_VM_INSTANCE_QA" >> ~/.ssh/known_hosts
+            - ssh -i ~/.ssh/id_ed25519 azureuser@$AZURE_VM_INSTANCE_QA "sh ~/platform/frontend/deploy.sh"
