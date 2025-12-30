@@ -1,47 +1,23 @@
 "use client";
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import { useRouter } from "nextjs-toploader/app";
-import { GoogleAnalytics } from "@next/third-parties/google";
-import NextTopLoader from "nextjs-toploader";
-import { Toaster } from "sonner";
-import usePermission from "@/shared/hooks/usePermission";
-import ThemeProvider from "@/shared/providers/ThemeProvider";
-import { AppProvider } from "@/shared/providers/AppProvider";
 import Loader from "@/shared/common/Loader";
 import DatadogInit from "@/shared/core/Datadog";
+import { AppProvider } from "@/shared/providers/AppProvider";
+import ThemeProvider from "@/shared/providers/ThemeProvider";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import NextTopLoader from "nextjs-toploader";
+import { useRouter } from "nextjs-toploader/app";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import { Toaster } from "sonner";
 
 const IPRefresher = lazy(() => import("@/shared/hooks/IPRefresher"));
 
 const WrapperLayouts = ({ children }: { children: React.ReactNode }) => {
-  const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const { getUser } = usePermission();
-  const pathname = usePathname();
   useEffect(() => {
     setMounted(true);
   }, []);
 
   const router = useRouter();
-  useEffect(() => {
-    if (mounted) {
-      // For auth pages, don't fetch user data
-      if (pathname?.includes("/auth/")) {
-        setLoading(false);
-        return;
-      }
-
-      // For protected pages, get user data once
-      const fetchData = async () => {
-        try {
-          await getUser();
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchData();
-    }
-  }, [mounted, pathname]); // Simplified dependencies
 
   const getTheme = () => {
     if (typeof window !== "undefined") {
@@ -96,7 +72,7 @@ const WrapperLayouts = ({ children }: { children: React.ReactNode }) => {
 
                 <Suspense fallback={<Loader />}>
                   <DatadogInit />
-                  {loading ? <Loader /> : children}
+                  {children}
                 </Suspense>
                 <Suspense fallback={null}>
                   <IPRefresher />

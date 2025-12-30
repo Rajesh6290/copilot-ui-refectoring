@@ -11,6 +11,7 @@ import UnifiedHelpButton from "./UnifiedHelpButton";
 
 // import UseProtectedRoutes from "@/shared/hooks/useProtectedRoute";
 import dynamic from "next/dynamic";
+import Loader from "@/shared/common/Loader";
 
 const Navbar = dynamic(() => import("./Navbar"), {
   ssr: false
@@ -39,7 +40,9 @@ const DefaultLayoutComponent = ({
   const name = usePathname();
   const params = useParams();
   const [sessionId, setSessionId] = useState<string>("");
-
+  const { getUser } = usePermission();
+  const pathname = usePathname();
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (!isUserLoading && user?.user_id) {
       if (user?.subscription_status?.is_subscription_ended) {
@@ -108,7 +111,19 @@ const DefaultLayoutComponent = ({
       "https://app.cognitiveview.com/images/sideBarLogo.png"
     );
   }, [metaTitle]);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await getUser();
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [pathname]);
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <>
       {/* <!-- ===== Page Wrapper Start ===== --> */}
