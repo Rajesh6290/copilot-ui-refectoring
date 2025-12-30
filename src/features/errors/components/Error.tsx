@@ -37,7 +37,7 @@ const Error = ({
                 {"We're working to fix the issue. Please try again later."}
               </p>
               {process.env.NODE_ENV === "development" && (
-                <p className="mt-4 text-sm text-red-500">
+                <p className="mt-4 font-medium text-red-500">
                   Error: {error.message}
                 </p>
               )}

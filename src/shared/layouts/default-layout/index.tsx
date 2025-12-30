@@ -9,7 +9,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import UnifiedHelpButton from "./UnifiedHelpButton";
 
-import UseProtectedRoutes from "@/shared/hooks/useProtectedRoute";
+// import UseProtectedRoutes from "@/shared/hooks/useProtectedRoute";
 import dynamic from "next/dynamic";
 
 const Navbar = dynamic(() => import("./Navbar"), {
@@ -209,5 +209,5 @@ const DefaultLayoutComponent = ({
   );
 };
 
-export default UseProtectedRoutes(DefaultLayoutComponent);
-// export default DefaultLayoutComponent;
+// export default UseProtectedRoutes(DefaultLayoutComponent);
+export default DefaultLayoutComponent;
