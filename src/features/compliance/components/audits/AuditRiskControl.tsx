@@ -365,7 +365,7 @@ const AuditRiskControl: React.FC = () => {
                       startIcon={<Eye className="h-3 w-3" />}
                       onClick={() =>
                         router?.push(
-                          `/controls/${row?.control_doc_id}?_name=${row?.application_name}&Main-Tab=details`
+                          `/compliance/controls/${row?.control_doc_id}?_name=${row?.application_name}&Main-Tab=details`
                         )
                       }
                     >
@@ -378,7 +378,7 @@ const AuditRiskControl: React.FC = () => {
                       startIcon={<FileText className="h-3 w-3" />}
                       onClick={() =>
                         router?.push(
-                          `/controls/${row?.control_doc_id}?_name=${row?.application_name}&Main-Tab=evidence`
+                          `/compliance/controls/${row?.control_doc_id}?_name=${row?.application_name}&Main-Tab=evidence`
                         )
                       }
                     >
@@ -391,7 +391,7 @@ const AuditRiskControl: React.FC = () => {
                       startIcon={<Plus className="h-3 w-3" />}
                       onClick={() =>
                         router?.push(
-                          `/controls/${row?.control_doc_id}?_name=${row?.application_name}&Main-Tab=findings&openAdd=true&referedFrom=risk-control`
+                          `/compliance/controls/${row?.control_doc_id}?_name=${row?.application_name}&Main-Tab=findings&openAdd=true&referedFrom=risk-control`
                         )
                       }
                     >

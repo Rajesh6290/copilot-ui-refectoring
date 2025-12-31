@@ -248,7 +248,7 @@ export const NoDataState: React.FC = () => (
       title=" No AI Responsible Report Data Available"
       subTitle="Generate your RAI report by running a Trace in Chat+ or going to the Trace RAI page."
       pathName="Go"
-      link="/trace-rai"
+      link="/risk-management/trace-rai"
     />
   </div>
 );

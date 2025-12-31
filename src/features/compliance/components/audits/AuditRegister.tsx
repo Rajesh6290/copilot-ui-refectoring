@@ -347,7 +347,7 @@ const AuditRegister: React.FC<AuditRegisterProps> = ({ isAccess }) => {
                         <CustomButton
                           onClick={() => {
                             router.push(
-                              `/audits/${row?.audit_id}?_name=${encodeURIComponent(row?.title)}`
+                              `/compliance/audits/${row?.audit_id}?_name=${encodeURIComponent(row?.title)}`
                             );
                           }}
                           disabled={

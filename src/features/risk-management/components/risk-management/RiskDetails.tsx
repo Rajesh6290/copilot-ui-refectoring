@@ -337,7 +337,9 @@ const RiskDetails = ({
                                     <CustomButton
                                       className="!px-3 !py-1.5 !text-[0.65rem] transition-all duration-200 hover:scale-105 sm:!text-[0.7rem]"
                                       onClick={() =>
-                                        router.push(`/controls/${item?.doc_id}`)
+                                        router.push(
+                                          `/compliance/controls/${item?.doc_id}`
+                                        )
                                       }
                                     >
                                       Go to Control

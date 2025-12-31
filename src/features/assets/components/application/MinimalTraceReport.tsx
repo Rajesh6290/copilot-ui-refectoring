@@ -384,7 +384,7 @@ const MinimalTraceReport: React.FC<MinimalTraceReportProps> = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={() =>
-                          router.push("/self-assessment/responsible-ai")
+                          router.push("/risk-management/responsible-ai-report")
                         }
                         className="group flex items-center space-x-2 text-nowrap rounded-lg bg-gradient-to-r from-tertiary-500 to-indigo-600 px-4 py-2 font-medium text-white shadow-lg transition-all duration-300 hover:from-tertiary-600 hover:to-indigo-700 hover:shadow-indigo-500/30"
                       >
@@ -399,7 +399,7 @@ const MinimalTraceReport: React.FC<MinimalTraceReportProps> = () => {
                   <motion.button
                     whileTap={{ scale: 0.95 }}
                     onClick={() =>
-                      router.push("/self-assessment/responsible-ai")
+                      router.push("/risk-management/responsible-ai-report")
                     }
                     className="flex w-full items-center justify-center space-x-2 rounded-lg bg-gradient-to-r from-tertiary-500 to-indigo-600 px-3 py-1.5 text-sm font-medium text-white shadow-lg"
                   >

@@ -26,13 +26,13 @@ const FrameworkCard = ({
       role="button"
       onClick={() =>
         router.push(
-          `/framework/${item?.doc_id}?_name=${encodeURIComponent(item?.name)}&framework-name=${encodeURIComponent(item?.name)}&framework-id=${item?.id}`
+          `/compliance/framework/${item?.doc_id}?_name=${encodeURIComponent(item?.name)}&framework-name=${encodeURIComponent(item?.name)}&framework-id=${item?.id}`
         )
       }
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           router.push(
-            `/framework/${item?.doc_id}?_name=${encodeURIComponent(item?.name)}&framework-name=${encodeURIComponent(item?.name)}&framework-id=${item?.id}`
+            `/compliance/framework/${item?.doc_id}?_name=${encodeURIComponent(item?.name)}&framework-name=${encodeURIComponent(item?.name)}&framework-id=${item?.id}`
           );
         }
       }}

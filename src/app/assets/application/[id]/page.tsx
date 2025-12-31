@@ -1,14 +1,14 @@
-import ModelDetailsPage from "@/features/ai-application/pages/model-discovery/ModelDetailsPage";
+import ApplicationDetailsPage from "@/features/assets/pages/application/ApplicationDetailsPage";
 import MetaData from "@/shared/core/MetaData";
 import DefaultLayout from "@/shared/layouts/default-layout";
 import { Metadata } from "next";
 export const metadata: Metadata = MetaData(
-  "Model Details | Cognitiveview AI Governance Platform"
+  "Application Details | Cognitiveview AI Governance Platform"
 );
 const page = () => {
   return (
     <DefaultLayout>
-      <ModelDetailsPage />
+      <ApplicationDetailsPage />
     </DefaultLayout>
   );
 };

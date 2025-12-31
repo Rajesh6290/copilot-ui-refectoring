@@ -137,7 +137,9 @@ const Implementation = () => {
                 <CustomButton
                   className="!rounded-md !border-blue-600 !bg-blue-600 !text-[0.6rem] !text-white hover:!bg-blue-700"
                   startIcon={<ArrowRight className="h-3 w-3" />}
-                  onClick={() => router.push(`/implementation/${row.id}`)}
+                  onClick={() =>
+                    router.push(`/compliance/implementation/${row.id}`)
+                  }
                 >
                   View
                 </CustomButton>

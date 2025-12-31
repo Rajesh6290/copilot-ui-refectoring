@@ -1172,7 +1172,7 @@ const AuditDetails: React.FC = () => {
                                                                 ?.actions?.read
                                                             ) {
                                                               router.push(
-                                                                `/controls/${control?.control_doc_ids?.[0]}?_name=${control?.name}`
+                                                                `/compliance/controls/${control?.control_doc_ids?.[0]}?_name=${control?.name}`
                                                               );
                                                             } else {
                                                               toast.error(
@@ -1472,7 +1472,7 @@ const AuditDetails: React.FC = () => {
                                                                 ?.actions?.read
                                                             ) {
                                                               router.push(
-                                                                `/audits/${id}/risk-control/${control?.control_id}?_name=${control?.name}`
+                                                                `/compliance/audits/${id}/risk-control/${control?.control_id}?_name=${control?.name}`
                                                               );
                                                             } else {
                                                               toast.error(

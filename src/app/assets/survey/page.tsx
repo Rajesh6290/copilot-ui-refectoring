@@ -1,14 +1,14 @@
-import ApplicationPage from "@/features/ai-application/pages/application/ApplicationPage";
+import SurveyPage from "@/features/assets/pages/survey/SurveyPage";
 import MetaData from "@/shared/core/MetaData";
 import DefaultLayout from "@/shared/layouts/default-layout";
 import { Metadata } from "next";
 export const metadata: Metadata = MetaData(
-  "AI Application | Cognitiveview AI Governance Platform"
+  "Survey | Cognitiveview AI Governance Platform"
 );
 const page = () => {
   return (
     <DefaultLayout>
-      <ApplicationPage />
+      <SurveyPage />
     </DefaultLayout>
   );
 };

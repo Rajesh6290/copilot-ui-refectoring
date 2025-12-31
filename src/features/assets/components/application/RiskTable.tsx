@@ -208,7 +208,7 @@ const RiskTable = ({
                         <CustomButton
                           onClick={() =>
                             router.push(
-                              `/risk-management?Risk-Tab=risk+register&riskId=${row?.doc_id}`
+                              `/risk-management/risk?Risk-Tab=risk+register&riskId=${row?.doc_id}`
                             )
                           }
                           disabled={

@@ -331,7 +331,7 @@ const FrameworkControlDetails = ({
                                           className="bg-gradient-to-r from-indigo-500 to-purple-500 !px-3 !py-1.5 !text-xs transition-all duration-200 hover:from-indigo-600 hover:to-purple-600 sm:!px-4 sm:!py-2 sm:!text-sm"
                                           onClick={() =>
                                             router.push(
-                                              `/controls/${item?.doc_id}?_name=${item?.name}`
+                                              `/compliance/controls/${item?.doc_id}?_name=${item?.name}`
                                             )
                                           }
                                         >

@@ -171,7 +171,6 @@ const DefaultLayoutComponent = ({
             >
               {![
                 "/",
-                "/self-assessment/responsible-ai",
                 "/risk-management/responsible-ai-report",
                 `/c/${params["id"]}`
               ]?.includes(name) && <CustomNavigation />}

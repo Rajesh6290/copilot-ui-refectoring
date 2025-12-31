@@ -525,7 +525,7 @@ const SurveyQuestionReview = ({
                 link="#"
                 onClick={() =>
                   router.push(
-                    `/ai-application/survey/build/${surveyId?.docId}?_name=${data?.title}`
+                    `/assets/survey/build/${surveyId?.docId}?_name=${data?.title}`
                   )
                 }
               />

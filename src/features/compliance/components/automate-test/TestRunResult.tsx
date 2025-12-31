@@ -448,7 +448,7 @@ const TestRunResult: React.FC<TestRunResultProps> = ({
           .trim()
       : "Unknown Metric";
   const handleViewControl = (docId?: string, name?: string) =>
-    docId && router.push(`/controls/${docId}?_name=${name}`);
+    docId && router.push(`/compliance/controls/${docId}?_name=${name}`);
 
   const outcomeConfig = getOutcomeConfig(resultData?.outcome);
   const score = resultData?.score ?? 0;

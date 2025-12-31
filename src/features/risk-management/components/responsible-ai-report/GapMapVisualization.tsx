@@ -290,7 +290,7 @@ const GapMapVisualization: React.FC<GapMapVisualizationProps> = ({ data }) => {
               <li>
                 <Link
                   className=""
-                  href="/self-assessment/responsible-ai#actions-by-role"
+                  href="/risk-management/responsible-ai-report#actions-by-role"
                 >
                   • Consider following prescribed actions for improvement
                 </Link>

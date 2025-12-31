@@ -334,7 +334,7 @@ const TestRegister: React.FC<TestRegisterProps> = ({ isAccess }) => {
                         <CustomButton
                           onClick={() => {
                             router.push(
-                              `/automate-test/${row?.test_id}?_name=${encodeURIComponent(row?.name)}${row?.latest_result_id ? `&resultId=${row?.latest_result_id}` : ""}`
+                              `/compliance/automate-test/${row?.test_id}?_name=${encodeURIComponent(row?.name)}${row?.latest_result_id ? `&resultId=${row?.latest_result_id}` : ""}`
                             );
                           }}
                           className="w-fit !text-[0.7rem] !uppercase"

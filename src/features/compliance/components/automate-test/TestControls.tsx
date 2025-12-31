@@ -195,7 +195,9 @@ const TestControl = ({ testId }: { testId: string }) => {
             <div className="flex w-full items-center justify-center">
               <div className="w-fit">
                 <CustomButton
-                  onClick={() => router.push(`/controls/${row?.doc_id}`)}
+                  onClick={() =>
+                    router.push(`/compliance/controls/${row?.doc_id}`)
+                  }
                   className="w-fit !text-[0.7rem] !uppercase"
                 >
                   VIEW

@@ -541,9 +541,7 @@ const ModelDiscovery: React.FC = () => {
       const params = new URLSearchParams();
       params.set("asset_type", row.asset_type);
       params.set("source", selectedSource);
-      router.push(
-        `/ai-application/model-discovery/${row.doc_id}?${params.toString()}`
-      );
+      router.push(`/assets/model-discovery/${row.doc_id}?${params.toString()}`);
     },
     [selectedSource, router]
   );

@@ -124,7 +124,7 @@ const AllSurevey = ({
             tooltip: "Edit",
             onClick: (row: Surevey) =>
               router.push(
-                `/ai-application/survey/build/${row.doc_id}?_name=${row.title}`
+                `/assets/survey/build/${row.doc_id}?_name=${row.title}`
               )
           }
         ]}

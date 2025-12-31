@@ -546,7 +546,7 @@ const Control = () => {
             <CustomButton
               onClick={() =>
                 router.push(
-                  `/controls/${item?.doc_id}?_name=${item?.control_name || item?.name}&checkId=${item?.doc_id}`
+                  `/compliance/controls/${item?.doc_id}?_name=${item?.control_name || item?.name}&checkId=${item?.doc_id}`
                 )
               }
               disabled={!currentAccess?.permission?.actions?.read}
@@ -674,7 +674,7 @@ const Control = () => {
                   <CustomButton
                     onClick={() => {
                       router.push(
-                        `/controls/${row?.doc_id}?_name=${row?.control_name || row?.name}&checkId=${row?.doc_id}`
+                        `/compliance/controls/${row?.doc_id}?_name=${row?.control_name || row?.name}&checkId=${row?.doc_id}`
                       );
                     }}
                     disabled={!currentAccess?.permission?.actions?.read}

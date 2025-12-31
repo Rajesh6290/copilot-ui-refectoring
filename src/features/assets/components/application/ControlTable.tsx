@@ -195,7 +195,9 @@ const ControlTable = ({
               <div className="w-fit">
                 <CustomButton
                   onClick={() =>
-                    router.push(`/controls/${row?.doc_id}?_name=${row?.name}`)
+                    router.push(
+                      `/compliance/controls/${row?.doc_id}?_name=${row?.name}`
+                    )
                   }
                   className="w-fit !text-[0.7rem] !uppercase"
                 >

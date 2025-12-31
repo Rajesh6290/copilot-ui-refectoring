@@ -810,7 +810,7 @@ const Application = () => {
                       <CustomButton
                         onClick={() => {
                           router.push(
-                            `/ai-application/application/${row.doc_id}?_name=${encodeURIComponent(row.name)}`
+                            `/assets/application/${row.doc_id}?_name=${encodeURIComponent(row.name)}`
                           );
                           setMetaTitle(
                             `${row.name} | Application | Cognitiveview`

@@ -237,13 +237,13 @@ const UseProtectedRoutes = <P extends object>(
 
       // Handle trust center generation redirect
       if (loggedUser?.resources?.landing_page?.trust_center_view) {
-        push("/self-assessment/trust-center");
+        push("/self-assessment/trust-center-report");
         setIsAuthorized(true);
         setHasValidatedAccess(true);
         return;
       }
       if (loggedUser?.resources?.landing_page?.rai_view) {
-        push("/self-assessment/responsible-ai");
+        push("/risk-management/responsible-ai-report");
         setIsAuthorized(true);
         setHasValidatedAccess(true);
         return;

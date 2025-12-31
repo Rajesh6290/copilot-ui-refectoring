@@ -236,7 +236,7 @@ const TestResultDrawer = ({ open, onClose, resultId }: DrawerProps) => {
   const handleViewControl = (docId?: string, controlName?: string) => {
     if (docId) {
       router.push(
-        `/controls/${docId}?_name=${encodeURIComponent(controlName || "")}`
+        `/compliance/controls/${docId}?_name=${encodeURIComponent(controlName || "")}`
       );
     }
   };

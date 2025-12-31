@@ -74,7 +74,7 @@ const UserSurvey = () => {
                   <CustomButton
                     onClick={() =>
                       router.push(
-                        `/ai-application/survey/view/${row?.doc_id}?survey_id=${row?.survey_id}&_name=${row?.title}`
+                        `/assets/survey/view/${row?.doc_id}?survey_id=${row?.survey_id}&_name=${row?.title}`
                       )
                     }
                     className="w-fit !text-[0.7rem] !uppercase"

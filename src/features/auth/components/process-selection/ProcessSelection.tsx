@@ -131,9 +131,9 @@ const UnifiedAuth = () => {
         setAuthState("complete");
 
         if (response?.resources?.landing_page?.trust_center_view) {
-          router.push("/self-assessment/trust-center");
+          router.push("/self-assessment/trust-center-report");
         } else if (response?.resources?.landing_page?.rai_view) {
-          router.push("/self-assessment/responsible-ai");
+          router.push("/risk-management/responsible-ai-report");
         } else if (response?.trust_center_generate) {
           router.push("/self-assessment/generate-trust-center");
         } else if (response?.subscription_status?.is_subscription_ended) {
