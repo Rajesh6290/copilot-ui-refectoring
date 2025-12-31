@@ -92,7 +92,7 @@ const AuditRiskControl: React.FC = () => {
   // Skeleton Loader Component
   const SkeletonLoader = () => (
     <div className="min-h-screen animate-pulse bg-gray-50 p-6 dark:bg-gray-900">
-      <div className="mx-auto max-w-7xl space-y-6">
+      <div className="w-full space-y-6">
         {/* Header Skeleton */}
         <div className="mb-8 flex items-center gap-3">
           <div className="h-14 w-14 rounded-lg bg-gray-300 dark:bg-gray-700"></div>
